@@ -9,6 +9,8 @@ k=[]
 #with open('Neo-Natal_Mortality_Rate.csv', 'rb') as myFile:
 with open(raw_input('Enter .csv file name: '), 'r') as myFile:
 #    reader = csv.reader(myFile, delimiter=',')
+    for i in csv.DictReader(myFile,delimiter=','):
+        print i,
     for row in (list(csv.reader(myFile,delimiter=','))):
         print
 #        print row[0] + '|' + row[1]
