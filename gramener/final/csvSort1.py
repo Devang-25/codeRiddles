@@ -8,7 +8,7 @@ rows = sorted(csv.DictReader(open('salaries.csv','rb'), delimiter=','))
 #t=raw_input("Enter profession: (Lawyers,Plumbers,Doctors): ")
 
 for i in xrange(len(rows)):
-    if rows[i].values()[2]=='Doctors':
+    if rows[i].values()[2]=='Lawyers':
         a[rows[i].values()[1]]=int(rows[i].values()[0])
 
 t=[item for item in reversed(sorted(a.iteritems(),key=operator.itemgetter(1)))]

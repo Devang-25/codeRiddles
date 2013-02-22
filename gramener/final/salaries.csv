@@ -1,13 +1,10 @@
 City,Job,Salary
 Delhi,Doctors,500
 Delhi,Lawyers,400
-Delhi,Plumbers,300
+Delhi,Plumbers,100
 London,Doctors,800
 London,Lawyers,700
-London,Plumbers,100
+London,Plumbers,300
 Tokyo,Doctors,900
 Tokyo,Lawyers,800
 Tokyo,Plumbers,400
-Hong Kong,Doctors,1000
-Hong Kong,Lawyers,1100
-Hong Kong,Plumbers,900
