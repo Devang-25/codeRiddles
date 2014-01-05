@@ -1,0 +1,11 @@
+#TopCoder ContestApplet Preferences File
+#Wed Jul 03 16:26:34 IST 2013
+com.topcoder.client.contestApplet.common.LocalPreferences.menufont=Arial
+com.topcoder.client.contestApplet.common.LocalPreferences.menufontsize=10
+com.topcoder.client.contestApplet.LocalPreferences.connectionType=DIRECT
+com.topcoder.jmaContestApplet.frames.codingframe.location=0\:27
+com.topcoder.jmaContestApplet.frames.codingframe.size=1922\:1054
+com.topcoder.jmaContestApplet.frames.codingframe.dividerloc=457
+com.topcoder.jmaContestApplet.frames.sourceViewer.location=608\:328
+com.topcoder.jmaContestApplet.frames.sourceViewer.size=1081\:609
+com.topcoder.jmaContestApplet.frames.sourceViewer.dividerloc=338

@@ -1,3 +1,5 @@
+// To print a matrix
+
 #include<stdio.h>
 //#define rw 3
 //#define cl 4

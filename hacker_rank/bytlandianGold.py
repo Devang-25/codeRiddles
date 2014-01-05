@@ -14,7 +14,7 @@ if __name__ == "__main__":
     while True:
         try:
             num = int(raw_input())
-            sys.stdout.write("%dn" % change(num))
+            sys.stdout.write("%d\n" % change(num))
         except:
             break
 
