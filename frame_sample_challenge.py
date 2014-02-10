@@ -35,7 +35,9 @@ try:
 except IOError as e:
     print "I/O error({0}): {1}".format(e.errno, e.strerror)
 except ValueError:
-    print "Could not convert data to an integer."
+    quit("\n\n\tCould not convert data to an integer.\n")
+except KeyboardInterrupt:
+    quit("\n\n\tYou aborted the program!\n")
 except:
     print "Unexpected error:", sys.exc_info()[0]  # >>sys.exc_info()<< gives whole exception
     raise #system call to raise the exception out loud
