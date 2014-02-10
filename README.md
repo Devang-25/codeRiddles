@@ -2,9 +2,9 @@
 
 ***
 
-This repo contains some solutions, to some of the programming riddles/problems i've come across during last few months.. 
+This repo contains some solutions, to some of the programming riddles/problems I've come across during last few months.. 
 
-> **SPOILER ALERT: websites like hackerRank, SPOJ, Project Euler, etc.. are included!** 
+> **SPOILER ALERT: solutions to websites like hackerRank, SPOJ, Project Euler, etc.. are included!** 
 
 ***
 
