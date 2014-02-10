@@ -1,10 +1,9 @@
-
-
 **Code Riddles**
 
 ***
 
-> This repo contains some solutions, to some of the programming riddles/problems i've come across during last few months.. 
+This repo contains some solutions, to some of the programming riddles/problems i've come across during last few months.. 
+
 > **SPOILER ALERT: websites like hackerRank, SPOJ, Project Euler, etc.. are included!** 
 
 ***
@@ -20,6 +19,6 @@
 	6.	Project Euler
 	7.	SPOJ
 	8.	TopCoder
-	9	Udacity
+	9.	Udacity
 	10.	Local practice problems / College lab stuff
 	
