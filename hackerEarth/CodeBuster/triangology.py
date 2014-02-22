@@ -5,7 +5,7 @@ class TriangleCheck:
 
     def check_triangle(self):
         smallest,medium,biggest = sorted(self.sides)
-        return smallest+medium>biggest and all(s>0 for s in sides)
+        return smallest+medium>biggest and all(s>0 for s in self.sides)
 
 if __name__ == '__main__': 
     try:
