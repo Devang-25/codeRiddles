@@ -20,10 +20,11 @@ class CodeHunt:
         for i in xrange(self.array_size-1):
             for j in xrange(i+1, self.array_size):
                 if self.euclid_GCD(self.ip[i], self.ip[j]) == self.ip[j]:
-                    if self.euclid_GCD(2**self.ip[i]-1, 2**self.ip[j]-1) == 2**self.ip[j]-1:
+                    temp = self.euclid_GCD(2**self.ip[i]-1, 2**self.ip[j]-1)
+                    if temp == 2**self.ip[j]-1:
                         self.door_number += 1;
                     else:
-                        self.door_number -= self.euclid_GCD(2**self.ip[i]-1, 2**self.ip[j]-1)
+                        self.door_number -= temp
         return self.door_number
 
 if __name__ == '__main__': 
