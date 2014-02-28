@@ -22,3 +22,4 @@ if __name__ == '__main__':
     assert checkio("1 2 3 4") == False, "Digits"
     assert checkio("bla bla bla bla") == True, "Bla Bla"
     assert checkio("Hi") == False, "Hi"
+    #assert checkio("Hi9 1a") == False, "Hi" # To test precondition
