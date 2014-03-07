@@ -20,5 +20,6 @@ This repo contains some solutions, to some of the programming riddles/problems I
 	7.	SPOJ
 	8.	TopCoder
 	9.	Udacity
-	10.	Local practice problems / College lab stuff
+	10.     Pychallenge
+	11.	Local practice problems / College lab stuff
 	
