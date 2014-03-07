@@ -1,14 +1,16 @@
 **Code Riddles**
 
 ***
+This repo contains some solutions, to some of the programming 
+riddles/problems that I've come across, during my academic life..
 
-This repo contains some solutions, to some of the programming riddles/problems I've come across during last few months.. 
-
-> **SPOILER ALERT: solutions to websites like hackerRank, SPOJ, Project Euler, etc.. are included!** 
+> **SPOILER ALERT: Resist from opening, before you've solved 
+> riddles on websites mentioned below..** 
 
 ***
 
-*	Some snippets (like prime sieves/algo's) were made using online help (blogs,forums,original websites)
+*	Some snippets (like prime sieves/algo's) were made 
+*	using online help (blogs,forums,original websites)
 
 *	Current problem origins:
 	1.	CheckIO
