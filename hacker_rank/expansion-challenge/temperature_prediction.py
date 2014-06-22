@@ -55,3 +55,9 @@ if __name__ == '__main__':
     PT = PredictTemp(N, ip)
     ans.append(PT.predict_already())
     for i in ans: print i
+
+## Optionally, take multiple line inputs with this 
+## (but it only ends depending on sentinel)
+# sentinel = '' # ends when this string is seen
+# for line in iter(raw_input, sentinel):
+#     pass # do things here
