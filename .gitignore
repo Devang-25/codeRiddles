@@ -34,3 +34,7 @@ nosetests.xml
 .project
 .pydevproject
 euler
+
+random_submission.csv
+training.csv
+test.csv
