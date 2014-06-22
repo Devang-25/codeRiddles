@@ -4,8 +4,7 @@
 This repo is a personal account of solutions to various 
 online coding challenges/problems/snippets/riddles.
 
-> **SPOILER ALERT: Resist from opening, before you've solved.
-> riddles on websites mentioned below..** 
+> **SPOILER ALERT: Resist from taking a look, unless you've solved it.**
 
 ***
 
