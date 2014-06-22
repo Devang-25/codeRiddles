@@ -1,3 +1,4 @@
+20
 yyyy    month   tmax    tmin
 1908    January 5.0 -1.4
 1908    February    7.3 1.9
