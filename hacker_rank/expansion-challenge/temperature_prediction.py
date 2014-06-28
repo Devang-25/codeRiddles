@@ -6,7 +6,7 @@ testcases/minima.txt
 '''
 
 import sys
-from numpy import array #, hstack
+import numpy as np
 from sklearn.preprocessing import Imputer
 # from sklearn.ensemble import RandomForestRegressor
 # from sklearn.pipeline import Pipeline
@@ -19,13 +19,15 @@ class PredictTemp:
 
     def __init__(self, size, ip):
         self.N = size
-        # self.data = array(ip, \
+        # self.data = np.array(ip, \
         #                   dtype=[(heads[0],'int'), \
         #                          (heads[1],'|S10'), \
         #                          (heads[2], 'float'), \
         #                          (heads[3], 'float')
         #                      ])
-        self.data = array(ip)
+        self.data = np.array(ip)
+        #self.data_val = np.array(self.data[:,[2,3]], dtype=float)
+        self.data_std = np.isnan(self.data[:,[2,3]].astype(np.float, copy=False))
         #print self.data[:,[2,3]]
         #print self.data
         
@@ -42,10 +44,10 @@ if __name__ == '__main__':
         temp = raw_input().split()        
         assert len(temp) == 4
         if 'Missing' in temp[2]:
-            temp[2] = "NaN"
+            temp[2] = np.NAN
             assert -75<=float(temp[3])<=75
         elif 'Missing' in temp[3]:
-            temp[3] = "NaN"
+            temp[3] = np.NAN
             assert -75<=float(temp[2])<=75
         else:
             assert -75<=float(temp[2])<=75 and -75<=float(temp[3])<=75    
