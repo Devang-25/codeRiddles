@@ -25,3 +25,5 @@ online coding challenges/problems/snippets/riddles.
 	11.   Kaggle
 	12.   Local practice problems / College lab stuff
 	
+
+- For detailed map, refer TREE.md
