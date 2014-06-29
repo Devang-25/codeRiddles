@@ -1,3 +1,10 @@
+# http://interactivepython.org/runestone/static/pythonds/AlgorithmAnalysis/analysis.html
+"""
+Comparing 2 methods that return minimum out of a list.
+@findMin: O(n^2) complexity
+@findMin2: O(n) complexity
+"""
+
 import time
 from random import randrange
 
