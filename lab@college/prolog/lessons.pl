@@ -1,6 +1,7 @@
 % -*- Prolog -*-
 
 %% http://www.anselm.edu/homepage/mmalita/culpro/index.html
+%% http://www.cs.ccsu.edu/~markov/ccsu_courses/prolog.txt
 
 has(jack,apples).
 has(jack,car).
