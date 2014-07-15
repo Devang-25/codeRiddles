@@ -1,5 +1,7 @@
 % -*- Prolog -*-
 
+%% http://www.anselm.edu/homepage/mmalita/culpro/index.html
+
 has(jack,apples).
 has(jack,car).
 has(ann,plums).
