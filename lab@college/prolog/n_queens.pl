@@ -1,6 +1,7 @@
 % -*- Prolog -*-
 
 %% https://www.csupomona.edu/~jrfisher/www/prolog_tutorial/2_11.html
+%% Refer to practice/8_queens_map_sample.py for sample solution array interpretation
 
 /* prolog tutorial 2.11 Chess queens challenge puzzle */
 
