@@ -19,7 +19,7 @@ size([_|T],R):-
     R is R1+1.
 
 delete(X, [X|T], T).
-delete(X, [H|T], [H|NT]) :- 
+delete(X, [H|T], [H|NT]) :-
     delete(X, T, NT).
 
 reverse([],[]).
