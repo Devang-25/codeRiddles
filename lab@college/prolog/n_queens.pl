@@ -4,11 +4,12 @@
 
 /* prolog tutorial 2.11 Chess queens challenge puzzle */
 
-perm([X|Y],Z) :- perm(Y,W), takeout(X,Z,W).   
+perm([X|Y],Z) :- perm(Y,W), delete(X,Z,W).   
 perm([],[]).
 
-takeout(X,[X|R],R).
-takeout(X,[F|R],[F|S]) :- takeout(X,R,S).
+delete(X, [X|T], T).
+delete(X, [H|T], [H|NT]) :-
+    delete(X, T, NT).
 
 solve(P) :-
      perm([1,2,3,4,5,6,7,8],P), 
@@ -25,6 +26,12 @@ combine([],[],[],[]).
 all_diff([X|Y]) :-  \+member(X,Y), all_diff(Y).
 all_diff([X]).
 
-%% Example:
-%% solve(P).
-%% setof(P,solve(P),Set), length(Set,L).
+%% %% Example:
+%% ?- solve(P).
+%% P = [5, 2, 6, 1, 7, 4, 8, 3] ;
+%% P = [6, 3, 5, 7, 1, 4, 2, 8] ;
+%% P = [6, 4, 7, 1, 3, 5, 2, 8] .
+
+%% ?- setof(P,solve(P),Set), length(Set,L).
+%% Set = [[1, 5, 8, 6, 3, 7, 2, 4], [1, 6, 8, 3, 7, 4, 2|...], [1, 7, 4, 6, 8, 2|...], [1, 7, 5, 8, 2|...], [2, 4, 6, 8|...], [2, 5, 7|...], [2, 5|...], [2|...], [...|...]|...],
+%% L = 92.
