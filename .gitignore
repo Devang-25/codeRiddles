@@ -38,3 +38,5 @@ euler
 random_submission.csv
 training.csv
 test.csv
+
+.ipynb_checkpoints/

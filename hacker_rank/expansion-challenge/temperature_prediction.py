@@ -57,6 +57,9 @@ class PredictTemp:
         self.NaN_filtered = self.df[self.null_refined['tmax']]\
                        [self.null_refined['tmin']]
 
+        print "Mean values:\n%s" % (self.df[[2,3]].apply(np.mean)\
+                                    .to_string())
+        
         self.plot_regression()
         return Imputer(self.NaN_filtered[[2,3]])
         
