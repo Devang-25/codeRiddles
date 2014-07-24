@@ -1,7 +1,7 @@
 '''
 Find missing temperature values
 ===============================
-libraries enabled: numpy, scipy, sklearn, nltk
+libraries enabled for expansion challenge: numpy, scipy, sklearn, nltk, pandas
 
 copy-paste text from ./testcases/temperature.txt
 '''
