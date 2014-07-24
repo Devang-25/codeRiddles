@@ -2,12 +2,18 @@
 Find missing temperature values
 ===============================
 libraries enabled: numpy, scipy, sklearn, nltk
-testcases/minima.txt
+
+copy-paste text from ./testcases/temperature.txt
 '''
 
 import sys
 import numpy as np
 from sklearn.preprocessing import Imputer
+import pandas as pd
+#from pandas import DataFrame
+from matplotlib.pylab import poly1d, polyfit
+from matplotlib import pyplot as plt
+
 # from sklearn.ensemble import RandomForestRegressor
 # from sklearn.pipeline import Pipeline
 # from sklearn.cross_validation import cross_val_score
@@ -19,20 +25,40 @@ class PredictTemp:
 
     def __init__(self, size, ip):
         self.N = size
-        # self.data = np.array(ip, \
-        #                   dtype=[(heads[0],'int'), \
-        #                          (heads[1],'|S10'), \
-        #                          (heads[2], 'float'), \
-        #                          (heads[3], 'float')
-        #                      ])
-        self.data = np.array(ip)
-        #self.data_val = np.array(self.data[:,[2,3]], dtype=float)
-        self.data_std = np.isnan(self.data[:,[2,3]].astype(np.float, copy=False))
-        #print self.data[:,[2,3]]
-        #print self.data
+        # # self.data = np.array(ip, \
+        # #                   dtype=[(heads[0],'int'), \
+        # #                          (heads[1],'|S10'), \
+        # #                          (heads[2], 'float'), \
+        # #                          (heads[3], 'float')
+        # #                      ])
+        # self.data = np.array(ip)
+        # self.data_std = np.isnan(self.data[:,[2,3]].astype(np.float,
+        #                                                    copy=False))
+        self.df = pd.DataFrame(ip, 
+                               columns=['year','month','tmax','tmin'], 
+                               dtype=float)
+        self.null_refined = pd.notnull(self.df[[2,3]])
+
+    def plot_regression(self):
+        # sample plot of points
+        x = self.NaN_filtered['tmax']
+        y = self.NaN_filtered['tmin']
+        fit = polyfit(x,y,1)
+        fit_fn = poly1d(fit)
+        # takes in x and returns an estimate for y
+        plt.plot(x,y, 'yo', x, fit_fn(x), '--k')
+        plt.title("Temperature pattern regression plot")
+        plt.xlabel("tmax")
+        plt.ylabel("tmin")
+        plt.show()        
         
     def predict_already(self):
-        return Imputer(self.data[:,[2,3]])
+        # tmax_true = self.df['tmax'][np.isfinite(self.df['tmax'])
+        self.NaN_filtered = self.df[self.null_refined['tmax']]\
+                       [self.null_refined['tmin']]
+
+        self.plot_regression()
+        return Imputer(self.NaN_filtered[[2,3]])
         
 if __name__ == '__main__':
     N = int(raw_input())
