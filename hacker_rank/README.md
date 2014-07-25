@@ -1,1 +1,1 @@
-[Link to online ipython notebook for temperature prediction problem in expansion challenge](nbviewer.ipython.org/github/arcolife/codeRiddles/blob/master/hacker_rank/expansion-challenge/temperature_prediction_sample.ipynb)
+[Link to online ipython notebook for temperature prediction problem in expansion challenge](http://nbviewer.ipython.org/github/arcolife/codeRiddles/blob/master/hacker_rank/expansion-challenge/temperature_prediction_sample.ipynb)
