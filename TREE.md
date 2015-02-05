@@ -1,6 +1,25 @@
 Directory Tree
 ==============
 
+## Generate HTML Tree through:
+
+### For some pattern:
+```
+tree . -P '*.txt' -H . -T 'codeRiddles summary' 
+```
+
+### To ignore patterns:
+```
+tree .  -I '*.py|*.java|*.c|*.cpp|*.scala|*.csv|*.pl|*.json'  -H . -T 'codeRiddles summary' 
+```
+
+### To exclude empty dirs:
+```
+tree . -P '*.txt' --prune -H . -T 'codeRiddles summary' 
+```
+
+## sample Tree below:
+
 ```
 Directory Tree
 
@@ -60,8 +79,3 @@ Directory Tree
 └── udacity
 
 ```
-- 53 directories 
-
-- tree v1.6.0 © 1996 - 2011 by Steve Baker and Thomas Moore 
-  HTML output hacked and copyleft © 1998 by Francesc Rocher 
-  Charsets / OS/2 support © 2001 by Kyosuke Tokoro

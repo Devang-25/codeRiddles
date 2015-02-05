@@ -40,3 +40,5 @@ training.csv
 test.csv
 
 .ipynb_checkpoints/
+*.class
+*.out
