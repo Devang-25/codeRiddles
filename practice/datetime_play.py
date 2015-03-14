@@ -1,6 +1,6 @@
 from datetime import datetime
 
-epoch = datetime
+epoch = datetime(1970,1,1)
 
 # form datetime object from custom date
 x = datetime(2015,1,25,23,59,59)
@@ -27,3 +27,6 @@ _normalize_tstamp(dt)
 # UNIX to timestamp
 datetime.utcfromtimestamp(1422230399.0)
 # datetime.datetime(2015, 1, 25, 23, 59, 59)
+
+# better version of to:UNIX  conversion @:
+# http://www.markhneedham.com/blog/2014/10/20/python-converting-a-date-string-to-timestamp/
