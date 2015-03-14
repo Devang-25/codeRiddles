@@ -21,61 +21,81 @@ tree . -P '*.txt' --prune -H . -T 'codeRiddles summary'
 ## sample Tree below:
 
 ```
-Directory Tree
-
 .
+├── algorithms
 ├── amazon_challenge
-│   └── problems
+│   └── problems
+│       ├── fibonacci_factor.txt
+│       └── shortest_sub_segment.txt
 ├── checkio
-│   ├── liked_posts
-│   ├── Missions
-│   ├── station_home
-│   ├── station_hubspot
-│   └── station_library_2_0
+│   ├── Elementary
+│   ├── liked_posts
+│   ├── Missions
+│   ├── station_home
+│   ├── station_hubspot
+│   └── station_library_2_0
 ├── codechef
-│   └── CDCS2014
+│   └── CDCS2014
 ├── code-eval
-│   └── testcases
+│   └── testcases
+│       ├── fizz.txt
+│       ├── primes.txt
+│       └── reverse_add.txt
 ├── codeJam
-│   ├── 2014
-│   └── final
+│   ├── 2014
+│   │   └── cookie_clicker_alpha.txt
+│   └── final
+│       └── p1.txt
 ├── gordian_knot_14
-│   ├── codecraft
-│   └── threads2k
+│   ├── codecraft
+│   └── threads2k
 ├── gramener
-│   └── final
+│   ├── data.txt
+│   ├── diamond.txt
+│   ├── final
+│   │   └── gr.txt
+│   └── gr.txt
 ├── hackerEarth
-│   ├── algorithms
-│   │   └── final
-│   ├── CodeBuster
-│   ├── CommonFloor
-│   ├── february-love
-│   ├── mobiwik
-│   └── sourcebits
+│   ├── algorithms
+│   │   └── final
+│   ├── CodeBuster
+│   ├── CommonFloor
+│   ├── february-love
+│   ├── mobiwik
+│   ├── sourcebits
+│   └── thoughtworks-challenge
 ├── hacker_rank
-│   └── expansion-challenge
-│       ├── dumps
-│       └── testcases
+│   └── expansion-challenge
+│       ├── dumps
+│       └── testcases
+│           ├── minima.txt
+│           └── temperature.txt
 ├── kaggle
-│   └── higgs
+│   └── higgs
 ├── lab@college
-├── ls
+│   ├── java
+│   └── prolog
 ├── practice
-│   ├── c
-│   └── codeGolfs
+│   ├── a.txt
+│   ├── c
+│   └── codeGolfs
 ├── proj_euler
-│   └── final
+│   └── final
 ├── pychallenge
-│   ├── 1
-│   └── 2
+│   ├── 0.txt
+│   ├── 1
+│   └── 2
+│       └── ocr.txt
 ├── pythonds
 ├── spoj
-│   └── final
+│   └── final
 ├── topcoder
-│   ├── final
-│   ├── practice_rooms
-│   │   └── SRM_499_DIV_1
-│   └── SRM_600_div1
+│   ├── final
+│   ├── practice_rooms
+│   │   └── SRM_499_DIV_1
+│   └── SRM_600_div1
 └── udacity
+
+57 directories, 16 files
 
 ```
