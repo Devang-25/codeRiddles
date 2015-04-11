@@ -1,4 +1,5 @@
 #!/bin/bash
 
-python graph_basic.py data/tinyG.txt
-
+python client_Graph_API.py data/tinyG.txt
+echo -e "\n==============================\n"
+python proceessing_Graph_API.py data/tinyG.txt
