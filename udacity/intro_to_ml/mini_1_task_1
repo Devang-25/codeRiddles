@@ -1,3 +1,7 @@
+https://github.com/udacity/ud120-projects.git
+goto tools/ and run startup.py and check file enron_mail_20150507.tgz in proj root.
+
+====
 Create and train a Naive Bayes classifier in naive_bayes/nb_author_id.py. Use it to make predictions for the test set. What is the accuracy?
 
 When training you may see the following error: UserWarning: Duplicate scores. Result may depend on feature ordering.There are probably duplicate features, or you used a classification score for a regression task. warn("Duplicate scores. Result may depend on feature ordering.")
