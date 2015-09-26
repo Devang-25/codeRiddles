@@ -1,0 +1,62 @@
+12.
+Solar Power
+Max. Marks 100
+
+Energy resources were getting depleted on the planet Kepler and Xenny was the head of the Energy Saving Committee.
+
+Xenny was in-charge of a large piece of land, which was square in shape. The land was of size N x N. He placed square-shaped solar cells (1 x 1) on the piece of land uniformly, all over the land. Just when Xenny finished placing all solar cells, each cell received a power of K units.
+
+Xenny worked for D days as in-charge. On each day, he performed A actions.
+
+In each action, he either measured the total solar power received by a set of solar cells (sub-rectangle) or set the orientation of a single cell such that its reception power became Z times the previous power.
+
+Input:
+First line contains D, the no. of days.
+For each day, first line contains N and K - one side of the square piece land and initial value of reception power of each cell.
+Second line contains A - no. of actions.
+
+Actions:
+1. m x1 y1 x2 y2 - Measure solar powerful from (x1, y1) to (x2, y2).
+2. s x y Z- Set rotation of single cell (x, y), such that its reception power gets multiplied by a factor of Z.
+
+Output:
+Print the total reception power for every action in which "measurement" is done, modulo 10^9 + 7.
+
+Constraints:
+1 ≤ D ≤ 10
+1 ≤ N ≤ 1000
+1 ≤ K ≤ 100
+1 ≤ A ≤ 104
+1 ≤ x1, y1, x2, y2 ≤ N
+x1 ≤ x2 and y1 ≤ y2
+1 ≤ Z ≤ 100
+(Note: x1, y1, x2, y2 are 1-indexed)
+Sample Input
+(Plaintext Link)
+
+1
+3 1
+3
+m 1 1 1 3
+s 1 2 3
+m 1 1 1 3
+
+Sample Output
+(Plaintext Link)
+
+3
+5
+
+Explanation
+
+Initial powers of solar cells:
+
+1 1 1 1 1 1 1 1 1
+
+Measured power of cells from (1, 1) to (1, 3) = 1 + 1 + 1 = 3
+
+After setting orientation of (1, 2):
+
+1 3 1 1 1 1 1 1 1
+
+Measure power of cells from (1, 1) to (1, 3) = 1 + 3 + 1 = 5
