@@ -27,3 +27,7 @@ online coding challenges/problems/snippets/riddles.
 	
 
 - For detailed map, refer TREE.md
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/arcolife/coderiddles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
