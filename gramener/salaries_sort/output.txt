@@ -1,0 +1,17 @@
+Doctors
+Hong Kong,1000
+Tokyo,900
+London,800
+Delhi,500
+
+Lawyers
+Hong Kong,1200
+Tokyo,800
+London,700
+Delhi,400
+
+Plumbers
+Hong Kong,900
+Tokyo,400
+London,100
+Delhi,300
