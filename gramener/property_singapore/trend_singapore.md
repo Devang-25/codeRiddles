@@ -1,3 +1,5 @@
+data downloaded from http://share.gramener.com/data/public/data
+
 # overall stats
 	- developers with no units launched till date?
 	- cheaper / costlier localities ?
