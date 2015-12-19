@@ -1,0 +1,35 @@
+
+Harry Potter's Birthday Party
+Max. Marks 60
+
+Harry is planning a party for all of his friends at Hogwarts. Each friend has their own liking/disliking for different dishes. For each friend, we are given a string of 1 and 0 where 1 shows that this person like this particular dish. Harry has N friends and a total of K dishes available to make his menu. You need to find the count of minimum dishes so that all of the N friends are happy, which means everyone has at least one dish they like.
+
+Note : Everyone likes at least one dish.
+
+Input : Input will contain T test cases and each of the test case has following description : First line of test case has numbers N and K separated by a space. It is followed by N lines each of length K . Each of the N lines contains a string consisting of 0 and 1 where if jth (1<=j<=K) value in ith line (1<=i<=N) is set 1, it means that dish number j is liked by ith friend.
+
+Output : The minimum number of dishes in the party so that all friends like at least 1 dish out of those.
+
+Constraints : 1<=T<=10 1<=N<= 500. 1<=K<=10
+
+Each string will only contain 0 or 1. There is at least one 1 in each string.
+Sample Input
+(Plaintext Link)
+
+1
+2 2
+10 
+01
+
+Sample Output
+(Plaintext Link)
+
+2
+
+Explanation
+
+Explanation of answer of sample question: Both dishes are to be taken in the party as Friend 1 doesn't like Dish2 and Friend2 doesn't like Dish 1.
+Time Limit: 1 sec(s) for each input file.
+Memory Limit: 256 MB
+Source Limit: 1024 KB
+Marking Scheme: Marks are a
