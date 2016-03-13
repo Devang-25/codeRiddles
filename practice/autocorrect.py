@@ -23,6 +23,11 @@ from itertools import product
 # You mean, one of these words?:
 # homer, joker
 
+# example4:
+# Enter input string: qywat
+# You mean, one of these words?:
+# quest, wheat, wussy
+
 dictionary = enchant.Dict("en_US")
 
 row1 = list('qwertyuiop')
