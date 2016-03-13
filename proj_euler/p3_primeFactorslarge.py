@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 def prime_factors(n):
     "Returns all the prime factors of a positive integer"
     factors = []
