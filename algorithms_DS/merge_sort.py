@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 def merge(a, i = 0, j = 0, l = []):
     l1 = sorted(a[:len(a)/2])
     l2 = sorted(a[len(a)/2:])
