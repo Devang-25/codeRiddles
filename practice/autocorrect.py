@@ -6,6 +6,8 @@ import enchant
 from string import ascii_lowercase
 from itertools import product
 
+# disclaimer: enchant is only used here as a source of dictionary
+# and not for suggesting!
 # usage: ./autocorrect.py
 
 # example1:
