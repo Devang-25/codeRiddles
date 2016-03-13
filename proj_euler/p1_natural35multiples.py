@@ -4,4 +4,6 @@ t=0
 for i in xrange(1,1000):
     if(g(i)):
         t+=i
-    print i,t
+    # print i,t
+
+print t
