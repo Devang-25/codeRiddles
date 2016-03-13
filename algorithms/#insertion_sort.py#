@@ -1,0 +1,13 @@
+def swap(x,y):
+    return y,x
+
+def insert_sort(a=[]):
+    
+
+        
+a = input("Enter array (comma separated): ")
+return insert_sort(a)
+
+insert_sort()
+while raw_input('wish to sort more? (y/n) ').upper()=='Y':
+    insert_sort()

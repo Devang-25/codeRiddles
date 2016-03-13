@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 import math
 import numpy
 def prime6(upto):

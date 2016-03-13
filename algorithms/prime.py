@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 flag=1
 p=a=2
 tmp=0

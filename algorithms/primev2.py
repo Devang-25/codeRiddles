@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 #def isprime(startnumber):
 
 def isprime(startnumber):

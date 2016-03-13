@@ -1,3 +1,6 @@
+#!/usr/bin/env python2
+#!/bin/python
+
 def move(disks, src, dest, intermediate):
     if not disks:
         return

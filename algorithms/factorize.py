@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 # integer factorization
 # Ref: http://comeoncodeon.wordpress.com/2010/09/18/pollard-rho-brent-integer-factorization/
 import random

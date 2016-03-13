@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 def primes_sieve(limit):
     limitn = limit+1
     primes = range(2, limitn)

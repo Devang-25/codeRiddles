@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 """
 refer to lab@college/prolog/n_queens.pl 
 for solutions to 8 queens.

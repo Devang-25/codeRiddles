@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 
 class tree():
     def __init__(self):

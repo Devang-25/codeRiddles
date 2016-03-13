@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 graph = {
     'A': ['B', 'C'],
     'B': ['E', 'D'],
