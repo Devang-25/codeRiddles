@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
-                                                    
+
+# hack of sieve of eratosthenes
+# not good for large numbers.
+
 def get_primes_in_range(lower_limit, limit, old_primes_list):
     limitn = limit+1
     primes = dict()
@@ -42,6 +45,7 @@ def generate_primes_upto(count):
         print(e)
 
 test_cases = [6,10,10001]
+# test_cases = [1000000]
 for n in test_cases:
     x, l = generate_primes_upto(n)
     print("%sth: -> %s | len of list-> %s" %
