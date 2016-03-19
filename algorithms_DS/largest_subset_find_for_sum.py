@@ -18,22 +18,37 @@ user_input = sorted([int(j) for j in \
                      input("Enter list of integers: ").split(',')])
 total_sum = int(input("Enter total sum value to compare against: "))
 
-def find_largest(ip_list, T):
+def find_largest(ip_list, T, c):
     relevant = []
-    for i in range(len(ip_list),0,-1):
-        _tmp = itertools.permutations(ip_list, i)
-        for subset in _tmp:
-            if sum(subset) > T:
-                find_largest(ip_list[:i-1], T)
+    _tmp = itertools.combinations(ip_list, c)
+
+    for subset in _tmp:
+        if sum(subset) <= T:
+            relevant.append(subset)
+        else:
+            continue
+
+    if not relevant:
+        if len(ip_list) == 1:
+            if sum(ip_list) <= T:
+                return ip_list
             else:
-                relevant.append(subset)
+                return
+        elif not ip_list:
+            return
+        else:
+            relevant.append(find_largest(ip_list, T, c-1))
+            
     d = 0
     S = None
     for subset in relevant:
-        if sum(subset) > d:
+        if sum(subset) >= d:
             S = subset
             d = sum(subset)
+
     return S
 
-print("Largest subset with sum <= total value is: %s" %
-      str(find_largest(user_input, total_sum)))
+answer = find_largest(user_input, total_sum, len(user_input))
+
+print("Largest subset with sum <= total value is: %s" % str(answer))
+print("Sum of this largest set (value accrued at the end of the day): %s" % sum(answer))
