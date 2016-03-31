@@ -35,7 +35,7 @@ dictionary = enchant.Dict("en_US")
 row1 = list('qwertyuiop')
 row2 = list('asdfghjkl')
 row3 = list('zxcvbnm')
-layout = {'qwerty': [[i for i in row1], [j for j in row2], [k for k in row3]]}
+layout = {'qwerty': [row1, row2, row3]}
 # this gives:
 # [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
 #   ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
