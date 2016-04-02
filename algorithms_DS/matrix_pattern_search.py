@@ -126,6 +126,12 @@ if __name__ == '__main__':
                    ['v','x','r','t'],
                    ['l','y','u','w'],
                    ['n','a','u','z']]
+
+    # user_matrix = [list(itertools.repeat('a', 4)),
+    #                list(itertools.repeat('b', 4)),
+    #                list(itertools.repeat('c', 4)),
+    #                list(itertools.repeat('d', 4))]    
+
     print("Given Matrix: ")
     [print(x) for x in user_matrix]
     user_input = input("\nEnter single word to search for: ").lower()
@@ -136,3 +142,40 @@ if __name__ == '__main__':
         [print(x) for x in MPS.visited_mx]
     else:
         print("\nPattern does not exist. Try another one..\n")
+
+# violates this example for :
+# Example:
+# Given Matrix:
+# ['a', 'a', 'a', 'a']
+# ['b', 'b', 'b', 'b']
+# ['c', 'c', 'c', 'c']
+# ['d', 'd', 'd', 'd']
+
+# Enter single word to search for: aabbbabccd
+# found starting letter @ 0,0
+# looking for pattern 'abbbabccd' starting from 0,0
+# found nearby letter a @ 0,1
+# looking for pattern 'bbbabccd' starting from 0,1
+# found nearby letter b @ 1,2
+# looking for pattern 'bbabccd' starting from 1,2
+# found nearby letter b @ 1,3
+# looking for pattern 'babccd' starting from 1,3
+# found nearby letter b @ 1,2
+# looking for pattern 'abccd' starting from 1,2
+# found nearby letter a @ 0,1
+# looking for pattern 'bccd' starting from 0,1
+# found nearby letter b @ 1,2
+# looking for pattern 'ccd' starting from 1,2
+# found nearby letter c @ 2,3
+# looking for pattern 'cd' starting from 2,3
+# found nearby letter c @ 2,2
+# looking for pattern 'd' starting from 2,2
+# found nearby letter d @ 3,3
+
+# Pattern exists!
+
+# coordinates visited pattern:
+# [1, 1, 0, 0]
+# [0, 0, 1, 1]
+# [0, 0, 1, 1]
+# [0, 0, 0, 1]
