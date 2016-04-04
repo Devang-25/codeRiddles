@@ -1,5 +1,21 @@
 #!/usr/bin/env python3
 
+###################################################
+# "You have a 4 x 4 board with words. For example:
+# A B G H
+# O L L E
+# E R T Y
+# G E F Y
+
+# You need to write a function that finds if
+# a certain word exists in the board.
+# The rules are as followed:
+# 1. Each character needs to be close to one another
+# (neighbor cell). For example:
+# The function will return false for the word HERE
+# but true for the word HEY."
+####################################################
+
 import itertools
 
 class MatrixPatternSearch(object):
@@ -126,12 +142,23 @@ if __name__ == '__main__':
                    ['v','x','r','t'],
                    ['l','y','u','w'],
                    ['n','a','u','z']]
-
+    
+    ##################################################
     # user_matrix = [list(itertools.repeat('a', 4)),
     #                list(itertools.repeat('b', 4)),
     #                list(itertools.repeat('c', 4)),
-    #                list(itertools.repeat('d', 4))]    
+    #                list(itertools.repeat('d', 4))]
+    ##################################################
+    # user_matrix = [['A', 'B', 'G', 'H'],
+    #                ['O', 'L', 'L', 'E'],
+    #                ['E', 'R', 'T', 'Y'],
+    #                ['G', 'E', 'F', 'Y']]
 
+    # for x in range(len(user_matrix)):
+    #     for y in range(len(user_matrix[0])):
+    #         user_matrix[x][y] = user_matrix[x][y].lower()
+    ##################################################
+    
     print("Given Matrix: ")
     [print(x) for x in user_matrix]
     user_input = input("\nEnter single word to search for: ").lower()
@@ -143,7 +170,8 @@ if __name__ == '__main__':
     else:
         print("\nPattern does not exist. Try another one..\n")
 
-# violates this example for :
+#####################################################################
+# FIXTHIS: ..violates this example for :
 # Example:
 # Given Matrix:
 # ['a', 'a', 'a', 'a']
