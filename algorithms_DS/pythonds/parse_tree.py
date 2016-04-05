@@ -27,7 +27,36 @@ def postordereval(tree):
             return opers[tree.getRootVal()](res1,res2)
         else:
             return tree.getRootVal()
-                                            
+
+def inorder(tree):
+    if tree != None:
+        inorder(tree.getLeftChild())
+        print(tree.getRootVal())
+        inorder(tree.getRightChild())
+
+                                    
+def evaluate(parseTree):
+    opers = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
+    
+    leftC = parseTree.getLeftChild()
+    rightC = parseTree.getRightChild()
+    
+    if leftC and rightC:
+        fn = opers[parseTree.getRootVal()]
+        return fn(evaluate(leftC),evaluate(rightC))
+    else:
+        return parseTree.getRootVal()
+                            
+
+def printexp(tree):
+    sVal = ""
+    if tree:
+        sVal = '(' + printexp(tree.getLeftChild())
+        sVal = sVal + str(tree.getRootVal())
+        sVal = sVal + printexp(tree.getRightChild())+')'
+    return sVal
+
+                            
 def buildParseTree(fpexp):            
     fplist = fpexp.split()
     pStack = Stack()
@@ -55,9 +84,17 @@ def buildParseTree(fpexp):
     return eTree
 
 pt = buildParseTree("( ( 10 + 5 ) * 3 )")
-print("\npreorder:")
+
+print("\npreorder traverse:")
 postorder(pt)
-print("\npostorder:")
+print("\npostorder traverse:")
 preorder(pt)
-print("\npostorder eval:")
+print("\ninorder traverse:")
+inorder(pt)
+
+print("\npostorder evaluate:")
 print(postordereval(pt))
+print("\ninorder evaluate:")
+print(evaluate(pt))
+print("\nprint expression:")
+print(printexp(pt))
