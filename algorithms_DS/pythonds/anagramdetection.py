@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 # http://interactivepython.org/runestone/static/pythonds/AlgorithmAnalysis/analysis.html
 """
 An Anagram Detection Example
