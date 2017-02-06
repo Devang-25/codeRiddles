@@ -1,0 +1,44 @@
+
+using inbuilt list [] ....
+
+Length:   0; Size in bytes:   64 
+Length:   1; Size in bytes:   96 
+Length:   2; Size in bytes:   96 
+Length:   3; Size in bytes:   96 
+Length:   4; Size in bytes:   96 
+Length:   5; Size in bytes:  128 
+Length:   6; Size in bytes:  128 
+Length:   7; Size in bytes:  128 
+Length:   8; Size in bytes:  128 
+Length:   9; Size in bytes:  192 
+Arr:  [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+
+...........and now:
+    using ctypes.py_object for a custom DynamicArray
+    
+Length:   1; Size in bytes:   56; New capacity:   1
+Length:   2; Size in bytes:   56; New capacity:   2
+Arr:  [1, 2]
+	list(arr) succeeded
+
+Length:   3; Size in bytes:   56; New capacity:   4
+
+ERROR while executing list(arr) - ValueError: PyObject is NULL
+falling back to manual access index by index, one at a time..
+Arr: [1,2,aaa]
+
+    # at this point, list(arr) fails. This is probably because 
+    capacity exceeds length. And so, it seems ctypes.py_object 
+    wouldn't comply with list() anymore. 
+
+    Perhaps, we need to read more about how ctypes work by RTFM'g the damn thing.
+    
+extending arr to add:
+ [44, 65, 77, 80, 6, 70, 63, 3, 84, 48, 78, 4, 76, 8, 45, 41, 72, 68, 58, 17, 54, 14, 27, 2, 66, 60, 59, 47, 12, 92, 18, 79, 73, 26, 33, 87, 19, 86, 31, 55, 90, 62, 53, 22, 24, 38, 64, 74, 85, 67, 71, 21, 13, 94, 39, 91, 28, 11, 15, 20]
+ of length 60..using a custom extend() method
+Total new Length:  63; Size in bytes:   56; New capacity:  68
+extending arr to add:
+ [21, 45, 10, 41, 24, 5, 35, 1, 49, 25, 29, 20, 22, 15, 8, 19, 14, 28, 48, 9]
+ of length 20..using a custom extend() method
+Total new Length:  83; Size in bytes:   56; New capacity: 156
+Arr: [1,2,aaa,44,65,...,74,...9] and so on..
