@@ -1,0 +1,37 @@
+Item       - 1 2 3 4 5 6 7 8 9  10 11 ... ▁▁▂▃▃▄▅▅▆▇█
+Table Size - 1 2 4 4 8 8 8 8 16 16 16 ... ▁▁▂▂▄▄▄▄███
+Cost  	   - 1 2 3 1 5 1 1 1 9  1  1  ... ▁▁▂▁▄▁▁▁█▁▁
+
+(in case, the bars are not distinguishable, refer to table_growth.png in this folder)
+
+NOTE: see the pattern there? with each append() to the array [Item],
+      [Cost] only grows at some points and is 1 at all other,
+      where as the [Table Size] grows only in batches (ref: amortized potential function).
+
+      So, rather than considering the pessimistic approach of saying that we need so much space
+      for N items, we've settled the debt by dynamically allocating space for near future needs
+      of the array, so that it doesn't have to pre-allocate or run with O(n) for each append().
+
+-- everytime a table is full, the space is doubled.
+-- everytime, the table is full, cost of a new insertion is n (n being latest index).
+-- >> it is n because the items are copied to a new table, and referenced back
+-- >> ("from [1] - cost of resizing the array is the number of elements moved.).
+-- >> This forms a loop. Observe the code in _resize() for explanation.
+-- >> [1] http://www.cs.cmu.edu/afs/cs/academic/class/15451-s10/www/lectures/lect0203.pdf
+-- at a time when a table has empty space, cost is 1, since 0 allocations take place.
+
+thus, the total amortized cost = (1+2+3+1+5+1+1+1+9+1..)
+      	  		       	 -----------------------
+					    n
+
+1+2+3+1+5+... => 1 + (1+1) + (1+2) + 1 + (1+4) + ....
+
+=> (1 + 1 + 1 ... x n) + (1 + 2 + 4 + ...)
+
+
+       [ n items ]    [ log2(n-1)] + 1 terms ]
+Sum => [(1+1+1+1..) + (1 + 2 + 4 + ........) ] <= [n+2n]/n <= 3 (i.e., a constant)
+       -----------------------------
+                    n
+ .
+. .  Amortized cost = O(1)

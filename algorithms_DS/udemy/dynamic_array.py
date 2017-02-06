@@ -109,7 +109,7 @@ if __name__ == '__main__':
         print("falling back to manual access index by index, one at a time..")
         print("Arr: [%s,%s,%s]" %
               (arr[0],arr[1], arr[2]))
-    
+
     print("""
     # at this point, list(arr) fails. This is probably because 
     capacity exceeds length. And so, it seems ctypes.py_object 
@@ -118,6 +118,11 @@ if __name__ == '__main__':
     Perhaps, we need to read more about how ctypes work by RTFM'g the damn thing.
     """)
 
+    arr.append("bbb")
+    print('Length: {0:3d}; Size in bytes: {1:4d}; New capacity: {2:3d}'\
+          .format(len(arr), sys.getsizeof(arr), arr.capacity))
+    print("Arr: ",list(arr))
+    
     x = sample(range(1,100),60)
     print("extending arr to add:\n %s\n of length %s..using a custom extend() method" % (x,len(x)))
     arr.extend(x)
