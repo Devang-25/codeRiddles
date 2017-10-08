@@ -15,7 +15,7 @@
 import itertools
 
 user_input = sorted([int(j) for j in \
-                     input("Enter list of integers: ").split(',')])
+                     input("Enter list of integers (csv): ").split(',')])
 total_sum = int(input("Enter total sum value to compare against: "))
 
 def find_largest(ip_list, T, c):

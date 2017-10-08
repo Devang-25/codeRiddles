@@ -17,6 +17,7 @@ xx = re.split('0|1', str(x))
 xx = [i for i in xx if len(i) >= N]
 
 z = lambda x,y: x*y
+# or => from operator import mul
 
 def find_max(ip_ranges, N):
     list_of_Ns = [[int(i) for i in list(seq)] for seq in ip_ranges if len(seq)==N]

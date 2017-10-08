@@ -23,6 +23,7 @@ if __name__=='__main__':
     f = open(sys.argv[1], 'rb')
     In = f.read().splitlines()
     f.close()
+    #import pdb; pdb.set_trace()
     G = Graph(In)
     for v in xrange(0, G.V):
         for w in G.adj(v):

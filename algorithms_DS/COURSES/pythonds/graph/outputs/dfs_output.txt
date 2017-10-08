@@ -1,0 +1,53 @@
+9 is connectedTo: ['9', '3', '7', '2', '1'] has properties: {'name': 'george', 'age': '12'}
+7 is connectedTo: ['11', '12'] has properties: {'name': 'connon', 'age': '14'}
+12 is connectedTo: ['23'] has properties: {'name': 'hermoine', 'age': '21'}
+8 is connectedTo: ['9', '8'] has properties: {'name': 'richard', 'age': '16'}
+2 is connectedTo: ['6', '4'] has properties: {'name': 'harry', 'age': '14'}
+0 is connectedTo: ['2', '5', '6', '1'] has properties: {'name': 'tom', 'age': '10'}
+5 is connectedTo: ['9', '11'] has properties: {'name': 'alex', 'age': '19'}
+13 is connectedTo: [] has properties: {'name': 'birbal', 'age': '52'}
+10 is connectedTo: ['9', '0', '12'] has properties: {'name': 'wesley', 'age': '17'}
+6 is connectedTo: ['10'] has properties: {'name': 'brian', 'age': '20'}
+4 is connectedTo: ['2', '6', '12'] has properties: {'name': 'kevin', 'age': '18'}
+1 is connectedTo: ['0'] has properties: {'name': 'dick', 'age': '12'}
+3 is connectedTo: ['3', '2', '1'] has properties: {'name': 'sam', 'age': '16'}
+23 is connectedTo: [] has properties: {}
+11 is connectedTo: [] has properties: {'name': 'ron', 'age': '20'}
+{'0': Vertex(_id=0, inward_count=2, outward_count=4),
+ '1': Vertex(_id=1, inward_count=3, outward_count=1),
+ '10': Vertex(_id=10, inward_count=1, outward_count=3),
+ '11': Vertex(_id=11, inward_count=2, outward_count=0),
+ '12': Vertex(_id=12, inward_count=3, outward_count=1),
+ '13': Vertex(_id=13, inward_count=0, outward_count=0),
+ '2': Vertex(_id=2, inward_count=4, outward_count=2),
+ '23': Vertex(_id=23, inward_count=1, outward_count=0),
+ '3': Vertex(_id=3, inward_count=2, outward_count=3),
+ '4': Vertex(_id=4, inward_count=1, outward_count=3),
+ '5': Vertex(_id=5, inward_count=1, outward_count=2),
+ '6': Vertex(_id=6, inward_count=3, outward_count=1),
+ '7': Vertex(_id=7, inward_count=1, outward_count=2),
+ '8': Vertex(_id=8, inward_count=1, outward_count=2),
+ '9': Vertex(_id=9, inward_count=4, outward_count=5)}
+Enter start node: 4
+Enter destination node: 7
+Checking path start to end, using DFS..
+[]
+['4']
+['4', '2']
+['4', '2', '6']
+['4', '2', '6', '10']
+['4', '2', '6', '10', '9']
+['4', '2', '6', '10', '9']
+['4', '2', '6', '10', '9', '3']
+['4', '2', '6', '10', '9', '3']
+['4', '2', '6', '10', '9', '3']
+['4', '2', '6', '10', '9', '3', '1']
+['4', '2', '6', '10', '9', '3', '1', '0']
+['4', '2', '6', '10', '9', '3', '1', '0']
+['4', '2', '6', '10', '9', '3', '1', '0', '5']
+['4', '2', '6', '10', '9', '3', '1', '0', '5']
+['4', '2', '6', '10', '9', '3', '1', '0']
+['4', '2', '6', '10', '9', '3', '1', '0']
+['4', '2', '6', '10', '9']
+Path found: True 
+Traversed route: ['4', '2', '6', '10', '9', '7']

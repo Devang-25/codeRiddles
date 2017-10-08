@@ -89,3 +89,30 @@ class B(A):
 
 b = B('4') # inherits A's methods
 print(b.hello('2')) # calls B.ball although that's not defined in A
+
+
+########
+
+print("iter 5")
+
+class A():
+    def __init__(self, x=2):
+        self.foo = x
+    def hello(self, h):
+        return self.ball(h)
+
+class B(A):
+    def __init__(self, g=None):
+        if g:
+            super(B, self).__init__(g)
+        else:
+            super(B, self).__init__()
+        
+    def ball(self, h):
+        return h*2
+b = B()
+print(b.foo)
+b = B(5)
+print(b.foo)
+
+
