@@ -1,0 +1,71 @@
+ ./bfs_undirected.py 
+
+1 ['foal', 'foil', 'foll', 'foul', 'fowl', 'bool', 'cool', 'dool', 'gool', 'hool', 'mool', 'pool', 'rool', 'sool', 'tool', 'wool', 'zool']
+2 ['fail', 'feil', 'poll']
+3 ['pall', 'pell', 'pill', 'pull', 'pole']
+4 ['pale', 'poke', 'pome', 'pone', 'pope', 'pore', 'pose', 'pote']
+5 ['page', 'bale', 'dale', 'gale', 'hale', 'kale', 'male', 'nale', 'rale', 'sale', 'tale', 'vale', 'wale', 'yale']
+6 ['cage', 'fage', 'gage', 'mage', 'rage', 'sage', 'vage', 'wage', 'paga']
+7 []
+
+
+Result for fool:
+
+{'bale': 5,
+ 'bool': 1,
+ 'cage': 6,
+ 'cool': 1,
+ 'dale': 5,
+ 'dool': 1,
+ 'fage': 6,
+ 'fail': 2,
+ 'feil': 2,
+ 'foal': 1,
+ 'foil': 1,
+ 'foll': 1,
+ 'fool': 0,
+ 'foul': 1,
+ 'fowl': 1,
+ 'gage': 6,
+ 'gale': 5,
+ 'gool': 1,
+ 'hale': 5,
+ 'hool': 1,
+ 'kale': 5,
+ 'mage': 6,
+ 'male': 5,
+ 'mool': 1,
+ 'nale': 5,
+ 'paga': 6,
+ 'page': 5,
+ 'pale': 4,
+ 'pall': 3,
+ 'pell': 3,
+ 'pill': 3,
+ 'poke': 4,
+ 'pole': 3,
+ 'poll': 2,
+ 'pome': 4,
+ 'pone': 4,
+ 'pool': 1,
+ 'pope': 4,
+ 'pore': 4,
+ 'pose': 4,
+ 'pote': 4,
+ 'pull': 3,
+ 'rage': 6,
+ 'rale': 5,
+ 'rool': 1,
+ 'sage': 6,
+ 'sale': 5,
+ 'sool': 1,
+ 'tale': 5,
+ 'tool': 1,
+ 'vage': 6,
+ 'vale': 5,
+ 'wage': 6,
+ 'wale': 5,
+ 'wool': 1,
+ 'yale': 5,
+ 'zool': 1}
+

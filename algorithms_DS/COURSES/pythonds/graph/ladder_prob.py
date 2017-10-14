@@ -18,13 +18,18 @@ def buildGraph(wordList):
             for word2 in buckets[bucket]:
                 if word1 != word2:
                     g.addEdge(word1, word2)
-        
+
+    #print(buckets.keys())
     return g
 
+def read_data():
+    # f = open(sys.argv[1], 'r')
+    f = open('data/wordlists_small.txt', 'r')
+    wordList = f.read().splitlines()
+    return wordList
+         
 
 if __name__ == '__main__':
-    f = open(sys.argv[1], 'r')
-    wordList = f.read().splitlines()
+    wordList = read_data()
     G = buildGraph(wordList)
     print(G)
-    

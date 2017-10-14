@@ -3,12 +3,25 @@
 def generate_words(d):
     l = []
 
+    # # generate patterns for 4 letter words
+    # patterns = {
+    #     'ope': lambda x: x[1:], #_OPE
+    #     'ppe': lambda x: x[0] + x[2:], #P_PE
+    #     'poe': lambda x: x[:2] + x[3], #PO_E
+    #     'pop': lambda x: x[:3], #POP_
+    #     }
+
+    
     # generate patterns for 4 letter words
     patterns = {
-        'ope': lambda x: x[1:], #_OPE
-        'ppe': lambda x: x[0] + x[2:], #P_PE
+        'ool': lambda x: x[1:], #_OPE
+        'age': lambda x: x[1:], #_OPE
+        'ale': lambda x: x[1:], #_OPE
+        'pll': lambda x: x[0] + x[2:], #P_PE
+        'fil': lambda x: x[0] + x[2:], #P_PE
         'poe': lambda x: x[:2] + x[3], #PO_E
-        'pop': lambda x: x[:3], #POP_
+        'fol': lambda x: x[:2] + x[3], #PO_E
+        'pag': lambda x: x[:3], #POP_
         }
 
     for p in patterns:
