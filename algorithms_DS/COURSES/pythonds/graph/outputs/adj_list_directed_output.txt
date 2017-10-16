@@ -1,0 +1,39 @@
+ ./adjacency_list_graph_directed.py data/tinyG_directed.txt 
+11 is connectedTo: [] has properties: {'age': '20', 'name': 'ron'}
+12 is connectedTo: ['23'] has properties: {'age': '21', 'name': 'hermoine'}
+6 is connectedTo: ['10'] has properties: {'age': '20', 'name': 'brian'}
+4 is connectedTo: ['12', '2', '6'] has properties: {'age': '18', 'name': 'kevin'}
+3 is connectedTo: ['3', '1', '2'] has properties: {'age': '16', 'name': 'sam'}
+7 is connectedTo: ['11', '12'] has properties: {'age': '14', 'name': 'connon'}
+10 is connectedTo: ['0', '12', '9'] has properties: {'age': '17', 'name': 'wesley'}
+23 is connectedTo: [] has properties: {}
+1 is connectedTo: ['0'] has properties: {'age': '12', 'name': 'dick'}
+2 is connectedTo: ['4', '6'] has properties: {'age': '14', 'name': 'harry'}
+0 is connectedTo: ['5', '6', '1', '2'] has properties: {'age': '10', 'name': 'tom'}
+5 is connectedTo: ['11', '9'] has properties: {'age': '19', 'name': 'alex'}
+13 is connectedTo: [] has properties: {'age': '52', 'name': 'birbal'}
+8 is connectedTo: ['8', '9'] has properties: {'age': '16', 'name': 'richard'}
+9 is connectedTo: ['7', '3', '9', '1', '2'] has properties: {'age': '12', 'name': 'george'}
++-----------+--------------+---------------+
+| Vertex ID | Inward count | Outward count |
++-----------+--------------+---------------+
+|     11    |      2       |       0       |
+|     12    |      3       |       1       |
+|     6     |      3       |       1       |
+|     4     |      1       |       3       |
+|     3     |      2       |       3       |
+|     7     |      1       |       2       |
+|     10    |      1       |       3       |
+|     23    |      1       |       0       |
+|     1     |      3       |       1       |
+|     2     |      4       |       2       |
+|     0     |      2       |       4       |
+|     5     |      1       |       2       |
+|     13    |      0       |       0       |
+|     8     |      1       |       2       |
+|     9     |      4       |       5       |
++-----------+--------------+---------------+
+Max Degree:  5
+Average Degree:  3.8666666666666667
+Number of self loops:  3
+Is connected?: 

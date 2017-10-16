@@ -1,0 +1,27 @@
+./dfs_directed.py data/tinyG_directed.txt 
+1 is connectedTo: ['0'] has properties: {'age': '12', 'name': 'dick'}
+4 is connectedTo: ['6', '12', '2'] has properties: {'age': '18', 'name': 'kevin'}
+9 is connectedTo: ['1', '7', '9', '2', '3'] has properties: {'age': '12', 'name': 'george'}
+11 is connectedTo: [] has properties: {'age': '20', 'name': 'ron'}
+5 is connectedTo: ['11', '9'] has properties: {'age': '19', 'name': 'alex'}
+7 is connectedTo: ['11', '12'] has properties: {'age': '14', 'name': 'connon'}
+3 is connectedTo: ['1', '2', '3'] has properties: {'age': '16', 'name': 'sam'}
+0 is connectedTo: ['1', '5', '2', '6'] has properties: {'age': '10', 'name': 'tom'}
+6 is connectedTo: ['10'] has properties: {'age': '20', 'name': 'brian'}
+8 is connectedTo: ['8', '9'] has properties: {'age': '16', 'name': 'richard'}
+2 is connectedTo: ['6', '4'] has properties: {'age': '14', 'name': 'harry'}
+23 is connectedTo: [] has properties: {}
+12 is connectedTo: ['23'] has properties: {'age': '21', 'name': 'hermoine'}
+10 is connectedTo: ['0', '12', '9'] has properties: {'age': '17', 'name': 'wesley'}
+13 is connectedTo: [] has properties: {'age': '52', 'name': 'birbal'}
+Enter start node: 9
+Enter destination node: 11
+Checking path start to end, using DFS..
+[]
+['9']
+['9', '1']
+['9', '1', '0']
+['9', '1', '0']
+['9', '1', '0', '5']
+Path found: True 
+Traversed route: ['9', '1', '0', '5', '11']

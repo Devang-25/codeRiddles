@@ -22,11 +22,16 @@ def bfs(s, g):
         i+=1
         frontier = _next
 
-
     return level, parent
 
-def traverse():
-    pass
+def traverse(s, t, parents):
+    # reverse traverse from end to start
+    chain = [t]
+    while s != t:
+        t = parents[t]
+        chain.append(t)
+
+    return ' => '.join(chain[::-1])
 
 ### numerical v/s alhpabetical graphs
 
@@ -53,10 +58,40 @@ def digits_graph():
     return nodes[1], l, p
     
 
-if __name__ == '__main__':
-    s, level, parents = words_graph()
-    # s, level, parents = digits_graph()
-
-    print("\n\nResult for %s:\n" % s)
-    pprint(level)
+def print_results(start, end, query, parents, level):
+    print("\n\nResult: %s " % traverse(start, end, parents))
+    print("Distance of '%s' from '%s' is %s" % (
+        query,
+        start,
+        level[query]
+    ))
+    # pprint(level)
     # pprint(parents)
+    
+
+if __name__ == '__main__':
+
+    try:
+        if sys.argv[1] != '0':
+            start = '0'
+            end = '1'
+            query = '4'
+            start, level, parents = digits_graph()
+        else:
+            # Distance of 'sage' from 'fool' is 6
+            # #sixdegreesofseparation :D
+            # https://en.wikipedia.org/wiki/Six_degrees_of_separation
+            start = 'fool'
+            end = 'sage'
+            query = end
+            # query = 'male'
+            start, level, parents = words_graph(word=start)
+
+        print_results(start, end, query, parents, level)
+
+    except IndexError:
+        print("Usage: supply 0 for word based BFS; 1 for digits based")
+        print("Example: ./bfs_undirected.py 1")
+
+    except:
+        raise
