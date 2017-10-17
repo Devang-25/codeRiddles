@@ -1,6 +1,6 @@
 #!/bin/env python3
 
-from adjacency_list_graph_directed import *
+from adj_list_directed_graph import *
 
 G = Graph()        
 try:

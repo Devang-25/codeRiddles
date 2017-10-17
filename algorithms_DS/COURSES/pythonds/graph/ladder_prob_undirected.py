@@ -2,7 +2,7 @@
 
 import sys
 from collections import defaultdict
-from adjacency_list_graph_undirected import *
+from adj_list_undirected_graph import *
 
 
 def buildGraph(wordList):

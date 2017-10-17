@@ -95,6 +95,7 @@ class Graph(object):
                     count+=1
         return count/2
 
+    
 if __name__=='__main__':
     f = open(sys.argv[1], 'rb')
     In = f.read().splitlines()

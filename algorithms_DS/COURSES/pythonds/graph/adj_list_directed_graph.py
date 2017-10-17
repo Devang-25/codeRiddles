@@ -185,6 +185,10 @@ class Graph(object):
     def isConnected(self):
         return
     
+    def is_rRegular(self):
+        # https://en.wikipedia.org/wiki/Regular_graph
+        return
+    
 if __name__=='__main__':
     G = Graph()
 

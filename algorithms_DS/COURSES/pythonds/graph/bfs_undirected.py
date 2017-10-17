@@ -2,8 +2,8 @@
 
 import sys
 from pprint import pprint
-from ladder_prob import *
-from adjacency_list_graph_undirected import *
+from ladder_prob_undirected import *
+from adj_list_undirected_graph import *
 
 def bfs(s, g):
     level = {s: 0}
@@ -26,10 +26,15 @@ def bfs(s, g):
 
 def traverse(s, t, parents):
     # reverse traverse from end to start
+    # one of the shortest paths (in case 2 paths of same distance)
     chain = [t]
-    while s != t:
-        t = parents[t]
-        chain.append(t)
+    try:
+        while s != t:
+            t = parents[t]
+            chain.append(t)
+    except KeyError:
+        print("\ntraverse(start, end): Key Error!")
+        quit("Invalid start/end nodes supplied")
 
     return ' => '.join(chain[::-1])
 
@@ -44,7 +49,7 @@ def words_graph(word='fool'):
 
 def digits_graph():
     # f = open(sys.argv[1], 'r')
-    f = open('data/tinyG.txt', 'r')
+    f = open('data/undirected.txt', 'r')
     In = f.read().splitlines()
     f.close()
     G = Graph()
