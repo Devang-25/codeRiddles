@@ -38,10 +38,12 @@ def knightGraph(bdSize):
            # squares that can be covered by the knight
            nodeId = posToNodeId(row,col,bdSize)
            newPositions = genLegalMoves(row,col,bdSize)
+           # import pdb; pdb.set_trace()
            for e in newPositions:
                # converts coordinates to node ids, and appends them
                # as edge connections to a particular node
                nid = posToNodeId(e[0],e[1],bdSize)
+               # print(nodeId, nid)
                ktGraph.addEdge(nodeId,nid)
     # contains all connected components as possible moves.
     # query the graph to obtain covered area
@@ -89,5 +91,6 @@ if __name__ == '__main__':
     # print("Squares/Nodes, by frequency of coverage: \n%s" % c)
 
     # can be multiple if larger sized chess board. Try 6x6
-    highest_connected =  max(G.graph, key=(lambda k: len(G.graph[k])))
+    # len(k) triggers __len__ overriden method of class Vertex
+    highest_connected =  max(G, key=(lambda current_vertex: len(current_vertex)))
     print("Max moves possible from Node/Square # %s" % highest_connected)

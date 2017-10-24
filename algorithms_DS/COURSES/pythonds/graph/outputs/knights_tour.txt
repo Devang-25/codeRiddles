@@ -1,4 +1,4 @@
-Graph(Vertices=25, Edges=48)
+Graph(Vertices=25, Edges=96)
  0 => [7, 11]
  1 => [8, 10, 12]
  2 => [5, 9, 11, 13]

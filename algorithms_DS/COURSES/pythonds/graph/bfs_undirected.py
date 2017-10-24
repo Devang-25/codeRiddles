@@ -10,10 +10,11 @@ def bfs(s, g):
     parent = {s: None}
     frontier = [s]
     i = 1
+    # import pdb; pdb.set_trace()
     while frontier:
         _next = []
         for u in frontier:
-            for v in g.adjacent(u):
+            for v in g.getVertex(u).getConnections():
                 if v not in level:
                     level[v] = i
                     parent[v] = u
@@ -44,6 +45,7 @@ def words_graph(word='fool'):
     wordList = read_data()
     # word = wordList[0]
     G = buildGraph(wordList)
+    # print(G)
     l, p = bfs(word, G)
     return word, l, p
 
@@ -55,7 +57,7 @@ def digits_graph():
     G = Graph()
     [G.addEdge(*i.split()) for i in In]
 
-    nodes = sorted(list(G.graph.keys()))
+    nodes = sorted(list(G.getVertices()))
     print(nodes)
     print(G)
     print()
