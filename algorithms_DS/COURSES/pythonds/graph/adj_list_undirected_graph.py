@@ -9,7 +9,7 @@ class Vertex(object):
         self._id = key
         self.connectedTo = {}
         self.props = {}
-        self.color = None
+        self.color = 'white'
 
     def setColor(self, c):
         self.color = c
@@ -26,6 +26,9 @@ class Vertex(object):
     def getProperties(self):
         return self.props
         
+    def __repr__(self):
+        return "Vertex %s" % self._id
+    
     def __str__(self, degree=None):        
         return "%s with degree %s is connectedTo: %s has properties: %s" % \
             (

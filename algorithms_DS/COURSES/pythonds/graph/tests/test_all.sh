@@ -47,4 +47,5 @@ check_result knights tour construction - undirected
 check_result knights tour DFS colored - undirected
 
 # 9
-
+./knights_tour_warnsdorffs_algo_dfs_undirected.py 8 >> /dev/null
+check_result knights tour warnsdorffs algo - DFS colored - undirected
