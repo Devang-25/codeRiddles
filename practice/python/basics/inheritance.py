@@ -115,4 +115,74 @@ print(b.foo)
 b = B(5)
 print(b.foo)
 
+# =================
+
+# multiple inheritence
+# also look at http://scottlobdell.me/2015/06/multiple-inheritance-python/
+# and at https://stackoverflow.com/questions/34884567/python-multiple-inheritance-passing-arguments-to-constructors-using-super
+
+class A(object):
+    def __init__(self, a):
+        self.a = a
+        print("called A")
+        
+    def aa(self):
+        print("aa ", self.a)
+        
+class B(A):
+    def __init__(self, b, z):
+        self.b = b*2
+        self.z = z
+        print("called B")
+        super(B, self).__init__(30, 3,4)
+        print("x,y: ", self.x, self.y)
+        
+    def bb(self):
+        print("bb ", self.a, self.b)
+    
+        
+class C(A):
+    def __init__(self, c, x, y):
+        self.c = c*3
+        self.x = x
+        self.y = y
+        print("called C")
+        super(C, self).__init__(20)
+        # super(C).__init__(c)
+        
+    def cc(self):
+        print("cc ", self.a, self.b, self.c)
+        
+        
+class D(B, C):
+    def __init__(self, d):
+        self.d = d*4
+        print("called D")
+        super(D, self).__init__(d, 1)
+        
+    def dd(self):        
+        print("dd ", self.a, self.b, self.c, self.d)        
+
+    def all(self):
+        self.dd()
+        self.cc()
+        self.bb()
+        self.aa()
+
+print("--------------")
+x = D(2)
+x.all()
+print(D.mro())
+# import pdb; pdb.set_trace()
+
+# called D
+# called B
+# called C
+# called A
+# x,y:  3 4
+# dd  20 4 90 8
+# cc  20 4 90
+# bb  20 4
+# aa  20
+# [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]
 
