@@ -30,3 +30,6 @@ datetime.utcfromtimestamp(1422230399.0)
 
 # better version of to:UNIX  conversion @:
 # http://www.markhneedham.com/blog/2014/10/20/python-converting-a-date-string-to-timestamp/
+
+datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+# '2017-12-21_20:18:09'
