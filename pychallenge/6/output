@@ -1,0 +1,50 @@
+sample contents of zip
+[<ZipInfo filename='99775.txt' compress_type=deflate file_size=21 compress_size=23>, <ZipInfo filename='99905.txt' compress_type=deflate file_size=21 compress_size=23>, <ZipInfo filename='readme.txt' compress_type=deflate filemode='-rw-r--r--' file_size=84 compress_size=78>]
+welcome to my zipped list.
+
+hint1: start from 90052
+hint2: answer is inside the zip
+
+reading Next - 94191 :: Previous - 90052
+reading Next - 85503 :: Previous - 94191
+reading Next - 70877 :: Previous - 85503
+reading Next - 15409 :: Previous - 70877
+reading Next - 60838 :: Previous - 15409
+reading Next - 80009 :: Previous - 60838
+reading Next - 21347 :: Previous - 80009
+...
+...
+reading Next - 44221 :: Previous - 91038
+reading Next - 992 :: Previous - 44221
+reading Next - 8700 :: Previous - 992
+reading Next - 45100 :: Previous - 8700
+reading Next - 68628 :: Previous - 45100
+reading Next - 67824 :: Previous - 68628
+reading Next - 46145 :: Previous - 67824
+reading Next - comments. :: Previous - 46145
+Final: Collect the comments.
+
+-----------------------------------------------------------------------------
+sample contents of zip
+[<ZipInfo filename='99775.txt' compress_type=deflate file_size=21 compress_size=23>, <ZipInfo filename='99905.txt' compress_type=deflate file_size=21 compress_size=23>, <ZipInfo filename='readme.txt' compress_type=deflate filemode='-rw-r--r--' file_size=84 compress_size=78>]
+welcome to my zipped list.
+
+hint1: start from 90052
+hint2: answer is inside the zip
+
+Final: Collect the comments.
+****************************************************************
+****************************************************************
+**                                                            **
+**   OO    OO    XX      YYYY    GG    GG  EEEEEE NN      NN  **
+**   OO    OO  XXXXXX   YYYYYY   GG   GG   EEEEEE  NN    NN   **
+**   OO    OO XXX  XXX YYY   YY  GG GG     EE       NN  NN    **
+**   OOOOOOOO XX    XX YY        GGG       EEEEE     NNNN     **
+**   OOOOOOOO XX    XX YY        GGG       EEEEE      NN      **
+**   OO    OO XXX  XXX YYY   YY  GG GG     EE         NN      **
+**   OO    OO  XXXXXX   YYYYYY   GG   GG   EEEEEE     NN      **
+**   OO    OO    XX      YYYY    GG    GG  EEEEEE     NN      **
+**                                                            **
+****************************************************************
+ **************************************************************
+
