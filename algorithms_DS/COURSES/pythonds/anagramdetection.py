@@ -32,13 +32,13 @@ def anagramSolution1(s1,s2):
                 pos2 = pos2 + 1
             #print pos1, pos2
 
+        print(alist)
         if found:
             alist[pos2] = None
         else:
             stillOK = False
 
         pos1 = pos1 + 1
-        
     return stillOK
 
 def anagramSolution2(s1,s2):
@@ -83,6 +83,12 @@ def anagramSolution4(s1,s2):
     for i in range(len(s2)):
         pos = ord(s2[i])-ord('a')
         c2[pos] = c2[pos] + 1
+
+    # import pdb; pdb.set_trace()
+    # (Pdb) c1
+    # [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    # (Pdb) c2
+    # [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0]
 
     j = 0
     stillOK = True

@@ -32,7 +32,7 @@
 # "trying to write on a pipe while the other end has been closed"
 # This is due to the fact that the head utility reads from stdout, then promptly closes it.
 
-# here's how to avoid it while continuing to use pip-head combo on python's outputs
+# here's how to avoid it while continuing to use pipe-head `| head` combo on python's outputs
 # https://stackoverflow.com/a/26736013/1332401
 #######################################################################
 
@@ -143,7 +143,7 @@ blocks = [chr(pix[4,h][0])]
 # solving for i, we get 86
 # 
 # which is the same as this:
-# for i in range (5, 602, 7):
+# for i in range (5, 607, 7):
 #     print(i)
 
 blocks.extend([chr(pix[5+7*i, h][0]) for i in range(86)])
