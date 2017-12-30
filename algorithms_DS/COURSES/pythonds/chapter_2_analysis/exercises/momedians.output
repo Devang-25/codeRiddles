@@ -1,0 +1,15 @@
+[[28, 6, 1, 11, 17], [26, 2, 25, 24, 0], [19, 27, 9, 5, 10], [8]]
+	 MEDIANS:  [11, 24, 10, 8]
+	 PIVOT:  11
+	 LOW:  [6, 1, 2, 0, 9, 5, 10, 8]
+	 HIGH:  [28, 17, 26, 25, 24, 19, 27]
+
+UNSORTED:  [28, 6, 1, 11, 17, 26, 2, 25, 24, 0, 19, 27, 9, 5, 10, 8]
+
+ACTUAL SORTED LIST:  [0, 1, 2, 5, 6, 8, 9, 10, 11, 17, 19, 24, 25, 26, 27, 28]
+i = 5; ith smallest element: 8
+
+Benchmark results for list of size 500
+..for ix positon 125 [kth smallest element]:
+MoM time: %s 3.5540225505828857
+sorted() time: %s 0.6454668045043945
