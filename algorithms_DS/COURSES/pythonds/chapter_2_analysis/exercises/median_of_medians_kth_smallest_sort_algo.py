@@ -16,6 +16,10 @@ SIZE_LIMIT = 500
 
 
 def median_of_medians(ulist, i, local_debug=False):
+    # swap low <-> high for kth largest element. Reverses the order.
+    # or this could also be achieved by changing the input like this:
+    # - i'th largest => len(A) - i - 1 (this finds Nth smallest which is also i'th largest)
+    # conversely, for largest, call median_of_medians(A, len(A)-1)
     chunked_lists = [ulist[j:j+5] for j in range(0, len(ulist), 5)]
     # each sorted() is O(n) on small sized lists.
     # Total = x * N where x is # of sublists of length 5 each
@@ -24,7 +28,8 @@ def median_of_medians(ulist, i, local_debug=False):
         pivot = sorted(medians)[len(medians)//2]
     else:
         pivot = median_of_medians(medians, len(medians)//2)
-    low = [j for j in ulist if j < pivot]
+
+    low = [j for j in ulist if j < pivot] # for largest, this is high[] now
     high = [j for j in ulist if j > pivot]
 
     if local_debug:
@@ -35,6 +40,7 @@ def median_of_medians(ulist, i, local_debug=False):
         print("\t HIGH: ", high, end="\n\n")
     
     k = len(low)
+    # make appropriate changes here for kth largest, if required
     if i < k:
         return median_of_medians(low,i)
     elif i > k:

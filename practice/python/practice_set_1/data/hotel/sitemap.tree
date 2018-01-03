@@ -1,0 +1,20 @@
+.
+├── ./cars
+│   ├── ./cars/2007
+│   ├── ./cars/2008
+│   └── ./cars/2009
+├── ./hotel_data_dedup_address.txt
+├── ./hotels
+│   ├── ./hotels/beijing
+│   ├── ./hotels/chicago
+│   ├── ./hotels/dubai
+│   ├── ./hotels/las-vegas
+│   ├── ./hotels/london
+│   ├── ./hotels/montreal
+│   ├── ./hotels/new-delhi
+│   ├── ./hotels/new-york-city
+│   ├── ./hotels/san-francisco
+│   └── ./hotels/shanghai
+└── ./OpinRankDataset.pdf
+
+
