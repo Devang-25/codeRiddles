@@ -55,8 +55,9 @@ class HeapSort(object):
 
 
 if __name__=='__main__':
-    ip = input("enter list of integers separated by space: ")
-    ip = [int(i) for i in ip.split()]
+    # ip = input("enter list of integers separated by space: ")
+    # ip = [int(i) for i in ip.split()]
+    ip = [3, 19, 1, 14, 8, 7]
     HS = HeapSort(ip)
     X = HS.sort_heap()
     print("sorted: %s" % X)
