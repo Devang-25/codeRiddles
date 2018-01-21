@@ -4,7 +4,7 @@
 def rec_rev(tmp):
     if len(tmp) == 0:
         return ''
-    return rec(tmp[1:]) + tmp[0]
+    return rec_rev(tmp[1:]) + tmp[0]
 
 assert rec_rev('abcde') == 'edcba'
 assert rec_rev('andds') == 'sddna'
