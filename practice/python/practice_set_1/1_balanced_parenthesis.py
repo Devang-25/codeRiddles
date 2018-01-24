@@ -52,30 +52,3 @@ assert isBalanced("{[}]") == False # should be fully enclosed loops, no intersec
 # from nose.tools import assert_equal
 # from nose.tools import assert_dict_equal
 # assert_dict_equal({5:1, 2: { 4:5}}, {2: { 4:6}, 5:1})
-
-# import re
-# parenthesis = '{}[]()<>'
-
-################################################################
-# # all possible parentheses combo for given length
-# # courtesy: https://stackoverflow.com/a/20554991/1332401
-
-# def paren(left, right=None):
-#     if right is None:
-#         right = left  # allows calls with one argument
-
-#     if left == right == 0: # base case
-#         yield ""
-
-#     else:
-#         if left > 0:
-#             for p in paren(left-1, right): # first recursion
-#                 yield "("+p
-
-#         if right > left:
-#             for p in paren(left, right-1): # second recursion
-#                 yield ")"+p
-
-# list(paren(4))
-
-################################################################
