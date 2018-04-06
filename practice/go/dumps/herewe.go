@@ -1,4 +1,3 @@
-
 package main
 
 import "fmt"
@@ -41,10 +40,9 @@ func main() {
      //   	  / b
      // syntax error: unexpected /, expecting }
      // line break can't happen before operator
-     
+
      fmt.Println("'Hello'"); fmt.Println("\t- World")
      // semi colons not compulsary
      // Q: how do I achieve following python-based functionality in Go?
      //  >> print("foo,gee", sep=',', end=" ", flush=True); print("bar")
 }
-     

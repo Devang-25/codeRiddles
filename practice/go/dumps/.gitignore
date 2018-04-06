@@ -1,2 +1,4 @@
-*.dat
+run_testpack
+*.pub
 *.pem
+*.dat

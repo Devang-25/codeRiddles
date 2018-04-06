@@ -38,18 +38,20 @@ type Node struct {
 // b := make([]byte, params.BitSize/8+8)
 // tst, err_tst := io.ReadFull(rand.Reader, b)
 // fmt.Println(tst)
-// check(err_tst, 1)
+// CheckErr(err_tst, 1)
 
 func read_keys_test(kcount int) {
 	cwd := GetCWD()
+	fmt.Println("\nReading new keys. Count: ", kcount)
+
 	for k:= 0; k < kcount; k++ {
 		// err := ioutil.WriteFile(path.Join(cwd, filename), sk.D.Bytes() , 0644)
 		filename := fmt.Sprintf("key%v.dat", k)
 		kfpath := path.Join(cwd, filename)
-		fmt.Printf("Reading key from: " + kfpath + "\n")
+		fmt.Printf("\nReading key from: " + kfpath + "\n")
 		b, err := ioutil.ReadFile(kfpath)
 		if err != nil {
-			fmt.Printf("Error reading keys: " + kfpath + "\n")
+			fmt.Printf("\nError reading keys: " + kfpath + "\n")
 			// return err
 		}
 		// fmt.Println(b)
@@ -61,7 +63,7 @@ func read_keys_test(kcount int) {
 		d.Decode(&sk)
 		// fmt.Println(d.Decode(&sk))
 		fmt.Println(d)
-		fmt.Println(k, " ====== ", sk)
+		fmt.Println("\n", k, " ====== ", sk)
 	}
 }
 
@@ -70,7 +72,7 @@ func write_new_keys(kcount int) {
 	// if err != nil {
 	// 	log.Fatal(err)
 	// }
-	// //fmt.Println(KD)
+	fmt.Println("\nWriting new keys. Count: ", kcount)
 	cwd := GetCWD()
 	// sk := []byte("test")
 	for k:= 0; k < kcount; k++ {
@@ -78,23 +80,22 @@ func write_new_keys(kcount int) {
 		//fmt.Println(path.Join("./", filename))
 		sk, _ := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
 
-		fmt.Println(reflect.TypeOf(sk))
+		fmt.Println("\n", reflect.TypeOf(sk))
 		fmt.Println(k, " ====== ", sk)
 		// //key_dat := fmt.Sprintf("%b", sk)
 		// //err := ioutil.WriteFile(path.Join(GetCWD(), filename), key_dat , 0644)
 
 		// err := ioutil.WriteFile(path.Join(cwd, filename), sk.D.Bytes() , 0644)
-
 		buf := bytes.Buffer{}
 		e := gob.NewEncoder(&buf)
 		e.Encode(sk)
 		err := ioutil.WriteFile(path.Join(cwd, filename), buf.Bytes(), 0644)
-		check(err, 1)
+		CheckErr(err, 1)
 	}
 }
 
 
-func check(e error, t int) {
+func CheckErr(e error, t int) {
 	// t = 1 => panic
 	// t = 0 => log.Fatal
         if e != nil{

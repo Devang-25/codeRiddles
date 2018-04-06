@@ -43,21 +43,25 @@ func TestDirOps(){
 	// also, just in case:
 	// https://golang.org/doc/faq#convert_slice_of_interface
 
-	//filename :=  ""
-	write_new_keys(2)
-	read_keys_test(2)
-
 	hosts_filep := path.Join(os.Getenv("HOME"), "hosts")
 	peers, err := ioutil.ReadFile(hosts_filep)
 	//fmt.Println(peers)
-	//check(err, 1)
-	check(err, 0)
+	//CheckErr(err, 1)
+	CheckErr(err, 0)
 	fmt.Println(string(peers))
 
 	peersList, err := readLines(hosts_filep)
-	check(err, 0)
+	CheckErr(err, 0)
 	fmt.Println(peersList)
 	fmt.Println(reflect.TypeOf(peersList))
 	fmt.Println(peersList[1])
 	//myPrintInterface(2, peersList)
+}
+
+func TestEncOps() {
+		//filename :=  ""
+		write_new_keys(1)
+		read_keys_test(1)
+		TestMarshalling()
+		checkECDSA()
 }
