@@ -33,6 +33,38 @@ const (
 	SimulatedEnv      = "TRUE_SIMULATION"
 )
 
+// type T struct {
+// 	A string
+// 	B struct {
+// 		RenamedC int   `yaml:"some"`
+// 		D        []int //`yaml:"RenamedD"`
+// 	}
+// 	Ew int `yaml:"eW"`
+// 	G  int `yaml:"g"`
+// }
+
+type Tunables struct {
+	// some_thing is the struct tag, to add metadata to a struct's fields
+	// SomeThing int `yaml:"something"`
+	// testbed config
+	TestbedConfig struct {
+		ClientID int `yaml:"client_id"`
+		Requests struct {
+			Max int `yaml:"max"`
+		}
+		ThreadingEnabled bool `yaml:"threadingEnabled"`
+	}
+
+	// slow chain
+	Slowchain struct {
+		Csize int `yaml:"csize"`
+	}
+	General struct {
+		BasePort   int `yaml:"basePort"`
+		maxLogSize int
+	}
+}
+
 // Config  configuration for pbft
 type Config struct {
 	Logistics struct {
@@ -41,30 +73,17 @@ type Config struct {
 
 	}
 
-	Tunables struct {
-		// testbed config
-		TestbedConfig struct {
-			ClientID int `yaml:"clientID"`
-			Requests struct {
-				Max int `yaml:"max"`
-			}
-			ThreadingEnabled bool `yaml:"threadingEnabled"`
-		}
-
-		// slow chain
-		Slowchain struct {
-			Csize int `yaml:"csize"`
-		}
-		General struct {
-			BasePort   int `yaml:"basePort"`
-			maxLogSize int
-		}
-	}
-
-	Network struct {
+	tunables Tunables
+	Network  struct {
 		N      int      // number of nodes to be launchedt
 		IPList []string // stores list of IP addresses belonging to BFT nodes
 		Ports  []int    // stores list of Ports belonging to BFT nodes
+	}
+}
+
+func DefaultTunables() *Tunables {
+	return &Tunables{
+		SomeThing: 4,
 	}
 }
 
@@ -83,7 +102,8 @@ func LoadLogisticsCfg() (*ini.File, error) {
 }
 
 // LoadTunablesConfig loads the .yaml file
-func (cfg *Config) LoadTunablesConfig() error {
+func LoadTunablesConfig() error {
+
 	path := os.Getenv(tunablesConfigEnv)
 	if path == "" {
 		path = "/etc/truechain/tunables_bft.yaml"
@@ -96,11 +116,22 @@ func (cfg *Config) LoadTunablesConfig() error {
 		return err
 	}
 
-	err = yaml.Unmarshal(yamlFile, &cfg.Tunables)
+	// tcfg := make(map[interface{}]interface{})
+
+	// fmt.Println(string(yamlFile))
+	tcfg := Tunables{}
+	// tcfg := T{}
+	err = yaml.Unmarshal(yamlFile, &tcfg)
 	if err != nil {
 		log.Printf("Unable to Unmarshal config file. Error:%+v", err)
 		return err
 	}
+
+	fmt.Println("BLABLA1")
+	// fmt.Println(tcfg)
+	fmt.Printf("--- tcfg:\n%v\n\n", tcfg)
+	// testbed := tcfg["testbed_config"]
+	// fmt.Println(testbed["threading_enabled"])
 
 	return nil
 }
@@ -116,9 +147,17 @@ func (cfg *Config) ValidateConfig(configData *ini.File) error {
 	return nil
 }
 
+func CheckErr(err error) {
+	if err != nil {
+		log.Printf("Error: Validate config file values failed. Error: %+v", err)
+	}
+}
+
 // GetPbftConfig returns the basic PBFT configuration used for simulation
 func GetPbftConfig() *Config {
 	cfg := &Config{}
+	err := LoadTunablesConfig()
+
 	cfgData, err := LoadLogisticsCfg()
 	// CheckErr(err)
 	if cfgData != nil {
@@ -128,12 +167,7 @@ func GetPbftConfig() *Config {
 		cfg.Logistics.KD = path.Join("./keys/")
 	}
 	err = cfg.ValidateConfig(cfgData)
-	if err != nil {
-		log.Printf("Error: Validate config file values failed. Error: %+v", err)
-		return nil
-	}
-	log.Printf("Info: initiate the configuration for pbft \n")
-
+	CheckErr(err)
 	return cfg
 }
 
