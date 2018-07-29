@@ -15,16 +15,31 @@ b:
   d: [3, 4]
 `
 
+type BottleNeck struct { 
+     RenamedC int `yaml:"some"`
+     D        []int
+}
+
 // Note: struct fields must be public in order for unmarshal to
 // correctly populate the data.
 type T struct {
         A string
-        B struct {
+	BottleNeck `yaml:"bot"`
+	E int
+}
+
+/*
+// Note: struct fields must be public in order for unmarshal to
+// correctly populate the data.
+type T struct {
+        A string
+        B struct { 
                 RenamedC int `yaml:"some"`
-                D        []int //`yaml:"RenamedD"` 
+                D        []int
         }
 	E int
 }
+*/
 
 func convertInterface(someFace interface{}) map[interface{}]interface{} {
      return someFace.(map[interface{}]interface{})
@@ -40,17 +55,16 @@ func main() {
         if err != nil {
                 log.Fatalf("error: %v", err)
         }
-        fmt.Printf("--- t:\n%v\n\n", t)
-
-	//fmap := map[interface{}]interface{}
-	fmt.Println(t.B.D[0])
+        fmt.Printf("---> t:\n%v\n\n", t)
+	fmt.Println(t.BottleNeck)
 
         d, err := yaml.Marshal(&t)
         if err != nil {
                 log.Fatalf("error: %v", err)
         }
         fmt.Printf("--- t dump:\n%s\n\n", string(d))
-    
+
+	/*
         m := make(map[interface{}]interface{})
     
         //err = yaml.Unmarshal(datafile, &m)
@@ -60,7 +74,6 @@ func main() {
         }
         fmt.Printf("--- m:\n%v\n\n", m)
 	f := m["b"]
-	//fmap := map[interface{}]interface{}
 	fmap := convertInterface(f)
 	//fmap := f.(map[interface{}]interface{})
 	fmt.Println(fmap["d"])
@@ -70,4 +83,5 @@ func main() {
                 log.Fatalf("error: %v", err)
         }
         fmt.Printf("--- m dump:\n%s\n\n", string(d))
+	*/
 }

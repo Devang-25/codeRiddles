@@ -43,26 +43,35 @@ const (
 // 	G  int `yaml:"g"`
 // }
 
-type Tunables struct {
-	// some_thing is the struct tag, to add metadata to a struct's fields
-	// SomeThing int `yaml:"something"`
-	// testbed config
-	TestbedConfig struct {
-		ClientID int `yaml:"client_id"`
-		Requests struct {
-			Max int `yaml:"max"`
-		}
-		ThreadingEnabled bool `yaml:"threadingEnabled"`
-	}
+type Testbed struct {
+	ClientID         int  `yaml:"client_id"`
+	MaxRequests      int  `yaml:"max_requests"`
+	ThreadingEnabled bool `yaml:"threading_enabled"`
+}
 
+type Slowchain struct {
+	Csize int `yaml:"csize"`
+}
+
+type General struct {
+	BasePort   int `yaml:"base_port"`
+	MaxLogSize int `yaml:"max_log_size"`
+	MaxFail    int `yaml:"max_fail"`
+}
+
+type Tunables struct {
+	// struct tags, to add metadata to a struct's fields
+	// testbed config
+	Testbed `yaml:"test"`
 	// slow chain
-	Slowchain struct {
-		Csize int `yaml:"csize"`
-	}
-	General struct {
-		BasePort   int `yaml:"basePort"`
-		maxLogSize int
-	}
+	Slowchain `yaml:"slowchain"`
+	General   `yaml:"general"`
+}
+
+type Network struct {
+	N      int      // number of nodes to be launchedt
+	IPList []string // stores list of IP addresses belonging to BFT nodes
+	Ports  []int    // stores list of Ports belonging to BFT nodes
 }
 
 // Config  configuration for pbft
@@ -73,17 +82,26 @@ type Config struct {
 
 	}
 
-	tunables Tunables
-	Network  struct {
-		N      int      // number of nodes to be launchedt
-		IPList []string // stores list of IP addresses belonging to BFT nodes
-		Ports  []int    // stores list of Ports belonging to BFT nodes
-	}
+	Tunables
+	Network
 }
 
 func DefaultTunables() *Tunables {
 	return &Tunables{
-		SomeThing: 4,
+		Testbed: Testbed{
+			ClientID:         5,
+			MaxRequests:      10,
+			ThreadingEnabled: true,
+		},
+		// slow chain
+		Slowchain: Slowchain{
+			Csize: 10,
+		},
+		General: General{
+			BasePort:   40450,
+			MaxLogSize: 1023303,
+			MaxFail:    1,
+		},
 	}
 }
 
@@ -102,7 +120,7 @@ func LoadLogisticsCfg() (*ini.File, error) {
 }
 
 // LoadTunablesConfig loads the .yaml file
-func LoadTunablesConfig() error {
+func (cfg *Config) LoadTunablesConfig() error {
 
 	path := os.Getenv(tunablesConfigEnv)
 	if path == "" {
@@ -119,19 +137,19 @@ func LoadTunablesConfig() error {
 	// tcfg := make(map[interface{}]interface{})
 
 	// fmt.Println(string(yamlFile))
-	tcfg := Tunables{}
+	// tcfg := Tunables{}
 	// tcfg := T{}
-	err = yaml.Unmarshal(yamlFile, &tcfg)
+	tunables := Tunables{}
+
+	err = yaml.Unmarshal(yamlFile, &tunables)
 	if err != nil {
 		log.Printf("Unable to Unmarshal config file. Error:%+v", err)
 		return err
 	}
 
-	fmt.Println("BLABLA1")
-	// fmt.Println(tcfg)
-	fmt.Printf("--- tcfg:\n%v\n\n", tcfg)
-	// testbed := tcfg["testbed_config"]
-	// fmt.Println(testbed["threading_enabled"])
+	// fmt.Printf("--- tcfg:\n%v\n\n", tunables)
+	// tunables = *DefaultTunables()
+	cfg.Tunables = tunables
 
 	return nil
 }
@@ -156,8 +174,9 @@ func CheckErr(err error) {
 // GetPbftConfig returns the basic PBFT configuration used for simulation
 func GetPbftConfig() *Config {
 	cfg := &Config{}
-	err := LoadTunablesConfig()
-
+	err := cfg.LoadTunablesConfig()
+	// tunables := *DefaultTunables()
+	// cfg.Tunables = tunables
 	cfgData, err := LoadLogisticsCfg()
 	// CheckErr(err)
 	if cfgData != nil {

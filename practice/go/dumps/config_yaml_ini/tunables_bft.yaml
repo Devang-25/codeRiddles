@@ -1,0 +1,11 @@
+# name: pbft base configuration
+test:
+  client_id: 5
+  max_requests: 12
+  threading_enabled: true    
+slowchain:
+  csize: 10
+general:
+  max_fail: 1
+  base_port: 49500
+  max_log_size: 2000
