@@ -1,0 +1,4 @@
+Baseport: 49500
+Blocksize: 10
+PASS
+ok  	_/home/arcolife/workspace/projects/Personal/codeRiddles/practice/go/dumps/config_yaml_ini	1.012s

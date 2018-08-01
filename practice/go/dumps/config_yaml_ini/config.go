@@ -28,7 +28,7 @@ import (
 )
 
 const (
-	tunablesConfigEnv = "TRUE_TUNABLES_CONF"
+	TunablesConfigEnv = "TRUE_TUNABLES_CONF"
 	generalConfigEnv  = "TRUE_GENERAL_CONF"
 	peerNetworkEnv    = "TRUE_NETWORK_CONF"
 	SimulatedEnv      = "TRUE_SIMULATION"
@@ -66,7 +66,7 @@ type BftCommittee struct {
 	Tbft        int `yaml:"tbft"`
 	Th          int `yaml:"th"`
 	Timeout     int `yaml:"timeout"`
-	Blocksize   int // Blocksize specifies the number of transactions per block
+	Blocksize   int `yaml:"block_size"` // Blocksize specifies the number of transactions per block
 	// TODO: add []chain
 	// Chain []struct {
 	// }
@@ -156,7 +156,7 @@ func LoadLogisticsCfg() (*ini.File, error) {
 // LoadTunablesConfig loads the .yaml file
 func (cfg *Config) LoadTunablesConfig() error {
 
-	path := os.Getenv(tunablesConfigEnv)
+	path := os.Getenv(TunablesConfigEnv)
 	if path == "" {
 		path = "/etc/truechain/tunables_bft.yaml"
 	}
@@ -199,12 +199,14 @@ func (cfg *Config) GetIPConfigs() {
 	CheckErr(err)
 	content := string(contentB)
 	cfg.Network.IPList = strings.Fields(content)
-	ports := make([]int, 0)
-	grpcports := make([]int, 0)
+	cfg.Network.Ports = make([]int, 0)
+	cfg.Network.GrpcPorts = make([]int, 0)
 	for k := range cfg.Network.IPList {
-		cfg.Network.Ports = append(ports, cfg.Tunables.General.BasePort+k)
-		cfg.Network.GrpcPorts = append(grpcports, cfg.Tunables.General.GrpcBasePort+k)
+	    fmt.Printf("<<<< %v >>>>>", cfg.Tunables.General.BasePort+k)
+		cfg.Network.Ports = append(cfg.Network.Ports, cfg.Tunables.General.BasePort+k)
+		cfg.Network.GrpcPorts = append(cfg.Network.GrpcPorts, cfg.Tunables.General.GrpcBasePort+k)
 	}
+	fmt.Println(cfg.Network)
 }
 
 // ValidateConfig checks for aberrance and loads struct Config{} with tunables and logistics vars
@@ -242,7 +244,8 @@ func GetPbftConfig() *Config {
 		cfg.Logistics.LD = cfgData.Section("log").Key("root_folder").String()
 		cfg.Logistics.ServerLog = cfgData.Section("log").Key("server_logfile").String()
 		cfg.Logistics.ClientLog = cfgData.Section("log").Key("client_logfile").String()
-		//cfg.General.MaxLogSize = cfgData.Section("log").Key("max_log_size").Int64()
+		logSize, _ := cfgData.Section("log").Key("max_log_size").Int()
+		cfg.General.MaxLogSize = logSize
 		log.Printf("Loaded logistics configuration.")
 	} else {
 		log.Printf("!! Unable to find required sections.")
@@ -261,6 +264,6 @@ func GetPbftConfig() *Config {
 func main() {
 	cfg := GetPbftConfig()
 	log.Printf("---> using following configurations:\n%+v\n\n", cfg)
-	cfg_yaml_string, _ := yaml.Marshal(&cfg)
-	fmt.Printf("%+v\n", string(cfg_yaml_string))
+	// cfg_yaml_string, _ := yaml.Marshal(&cfg)
+	// fmt.Printf("%+v\n", string(cfg_yaml_string))
 }
