@@ -1,0 +1,4 @@
+mysql:: SELECT * FROM courses;
+rails:: Course.all
+mysql:: SELECT id FROM courses;
+rails:: Course.pluck(:id)
