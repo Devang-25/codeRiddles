@@ -2,3 +2,4 @@ age_chunked*
 age_data
 age_data_remodelled
 age_sorted_large.txt
+*.csv

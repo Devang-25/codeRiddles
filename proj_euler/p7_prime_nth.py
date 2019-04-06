@@ -40,11 +40,13 @@ def generate_primes_upto(count):
                 upper_limit += (count - len(_tmp))*(count//len(_tmp))
             else:
                 flag = True
+        print(list(_tmp))
         return list(_tmp)[count-1], len(_tmp)
     except BaseException as e:
         print(e)
 
-test_cases = [6,10,10001]
+# test_cases = [6,10,10001]
+test_cases = [6,10,180]
 # test_cases = [1000000]
 for n in test_cases:
     x, l = generate_primes_upto(n)
