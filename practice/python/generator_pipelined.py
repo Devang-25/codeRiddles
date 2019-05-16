@@ -24,7 +24,9 @@ def gen_content(sec, pc):
             yield get_str(ini['ind'], fin['ind'], pc)
             ini = fin 
     except StopIteration:
-        pass
+        fin = len(pc)
+        yield get_str(ini['ind'], fin, pc)
+
 
 
 if __name__ == '__main__':
@@ -40,15 +42,23 @@ if __name__ == '__main__':
           {'id': 'p7', 'text': 'hhh'}]
 
     # sections
-    sec = [
+    sec_case_1 = [
         {'id': 's0', 'ind': 0},
         {'id': 's1', 'ind': 2},
         {'id': 's2', 'ind': 4},
         {'id': 's3', 'ind': 6}
     ]
 
+    # section pattern 2 for testing
+    sec_case_2 = [
+        {'id': 's0', 'ind': 0},
+        {'id': 's1', 'ind': 4},
+        {'id': 's3', 'ind': 6}
+    ]
 
-    generated_content = (l for l in gen_content(sec, pc))
+
+    # replace with 'sec_case_2' here for new pattern
+    generated_content = (l for l in gen_content(sec_case_1, pc))
 
     if DEBUG:
         print('nothing executed yet. generator pipelining is cool')
