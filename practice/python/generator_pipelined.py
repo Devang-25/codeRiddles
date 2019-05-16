@@ -1,8 +1,14 @@
 #!/bin/env python3
 
+
+DEBUG=False
+# DEBUG=True
+
 def get_str(x, y, pc):
     section_text = pc[x:y]
     section_text = (i['text'] for i in section_text)
+    if DEBUG:
+        print('..yeilded')
     return '\n'.join(section_text)
 
 def gen_content(sec, pc):
@@ -43,4 +49,9 @@ if __name__ == '__main__':
 
 
     generated_content = (l for l in gen_content(sec, pc))
+
+    if DEBUG:
+        print('nothing executed yet. generator pipelining is cool')
+        print("output: ")
+    
     print('\n-\n'.join(generated_content)) 
