@@ -58,6 +58,6 @@ func TestDirOps(){
 	check(err, 0)
 	fmt.Println(peersList)
 	fmt.Println(reflect.TypeOf(peersList))
-	fmt.Println(peersList[2])
+	fmt.Println(peersList[1])
 	//myPrintInterface(2, peersList)
 }

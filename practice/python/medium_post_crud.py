@@ -1,37 +1,40 @@
-#!/bin/env python3
+from generator_pipelined import *
+
+delta_set = [
+    {
+        "type": "updateParagraph",
+        "index": "p0",
+        "text": "aaaAAaaa"
+    },
+    {
+        "type": "addParagraph",
+        "index": "p1",
+        "text": "aaaAAaaa"
+    },
+    {
+        "type": "updateParagraph",
+        "index": "p5",
+        "text": "EEeeeEEEEE"
+    },
+    {
+        "type": "deleteParagraph",
+        "index": "p0",
+    },
+]
 
 
-DEBUG=False
-# DEBUG=True
-
-
-def get_str(x, y, pc):
-    section_text = pc[x:y]
-    section_text = (i['text'] for i in section_text)
-    if DEBUG:
-        print('..yeilded')
-    return '\n'.join(section_text)
-
-
-def gen_content(sec, pc):
-    """
-    @sec: section data
-    @pc: paragraph content
-    """
-    p = iter(sec)
-    ini = next(p)
-    try:
-        while True:
-            fin = next(p)
-            yield get_str(ini['ind'], fin['ind'], pc)
-            ini = fin 
-    except StopIteration:
-        fin = len(pc)
-        yield get_str(ini['ind'], fin, pc)
+def apply_delta(operations):
+    for op in operations:
+        if op == "updateParagraph":
+            pass
+        if op == "addParagraph":
+            pass
+        if op == "deleteParagraph":
+            pass
 
 
 if __name__ == '__main__':
-    
+
     # para
     pc = [{'id': 'p0', 'text': 'aaa'},
           {'id': 'p1', 'text': 'bbb'},
@@ -64,5 +67,5 @@ if __name__ == '__main__':
     if DEBUG:
         print('nothing executed yet. generator pipelining is cool')
         print("output: ")
-    
-    print('\n-\n'.join(generated_content)) 
+
+    print('\n-\n'.join(generated_content))

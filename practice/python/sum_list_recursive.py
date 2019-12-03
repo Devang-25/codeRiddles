@@ -25,3 +25,17 @@ try:
     print "Sum of flattened list: %d"%(sum(flatten(L)))
 except:
     raise
+
+# https://learning.oreilly.com/scenarios/python-cookbook-data/9781492061465/
+
+# recursive with *astrix (multi-value args format)
+# def sum(items):
+#     head, *tail = items
+#     return head + sum(tail) if tail else head
+
+# >>> items = [1, 10, 7, 4, 5, 9]
+# >>> head, *tail = items
+# >>> head
+# 1
+# >>> tail
+# [10, 7, 4, 5, 9]
