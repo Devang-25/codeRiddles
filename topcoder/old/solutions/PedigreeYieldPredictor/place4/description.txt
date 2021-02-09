@@ -1,0 +1,24 @@
+My method is based on the "Learning to Rank with Matrix Factorization".
+
+The "Matrix Factorization" is similar to the idea of the winners in the past competitions. 
+The matrix Yij=yield of planting soybean can be decomposed into the product of two matrix. One stands for the soybeans' features. The other stands for the environment. For smooth, I also use the year of the yield to construct the latent factors.
+The formula for prediction is y =dot( (loc+<loc,year>) , (MaterialID+<MaterialID,year>) ) + bias.
+
+Because the destination is to predicate the rank, I use the pair-wise method to train the model. For the same location, two different varieties are selected. For convenient, I just use the contiguous pair lines of the trainData. For efficiency, the lines' order of the same location should be shuffled after each round of training. 
+
+The loss function I use is the L2 with logistic function. 
+Loss = (R_ij - P_ij)^2 + regulation
+Where i,j is the index of the pair we selected. R_ij is the logistic function which use the real yield as input while P_ij is that which we use the prediction.
+Logistic function is L_ij = 1/(1+exp( f(i)-f(j) ) ).
+
+The parameters are manually set according to local experiment. I divided the trainData in to two parts according to the problem statement. The related code can be found in the Main class.
+
+Parameters:
+gamma : learning rate of the model;
+lambda_rep : regularization term of the locations latent factor;
+lambda_var : regularization term of the varieties latent factor;
+sigma_real,sigma_pred : controller  of the logistic function;
+
+Links:
+http://www2.research.att.com/~volinsky/papers/ieeecomputer.pdf
+http://en.wikipedia.org/wiki/Logistic_function

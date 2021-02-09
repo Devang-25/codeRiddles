@@ -1,0 +1,18 @@
+
+Basicaly, the solution is a mix of place1 solution and place4 solution of EliteClassifier.
+Then the final rank of a variety is the sum of its rank in each solution.
+
+The solutions are in class EliteClassifier1 and EliteClassifier4.
+
+The merge code is in function mergePred() (line 1905)
+
+In addition, I run the real_analyze() of EliteClassifier1 on the data to get new parameters in init_info().
+I also run the train1() of EliteClassifier4 to get new parameters in setParas().
+
+I also use variety's rank in the experiment as a feature in EliteClassifier1 and EliteClassifier4.
+
+For EliteClassifier1, the var's wins_cnt/tot_cnt is used to sort in each experiment group(line 713-729), saved as rank_in_exp.(the lower, the better)
+Then in overall_estimate(), estimate *= (50-var.rank_in_exp)/200.0
+
+For EliteClassifier4, rank is used for each trial to get a raw score(line 1066): score *= 1 + (((double)rank)-var_num_in_exp/2)/400.0 (hign rank is better)
+

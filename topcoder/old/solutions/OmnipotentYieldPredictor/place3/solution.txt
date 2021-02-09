@@ -1,0 +1,56 @@
+My predictions were produced by Linear Regression model fitted by Ordinary Least Squares approach in accordance with the 
+following expression:
+
+ p = Dp * ( PInv(Dtf'*Dtf + Dtv'*Dtv)) * (Dtf'*tf + Dtv'*tv) )
+
+where
+  p - column vector of the unknown (predicted) yield values,
+  Dp - matrix of predictor variables correspond to the predicted yields,
+  PInv - Moore-Penrose pseudoinverse function,
+  Dtf - matrix of predictor variables correspond to the fixed train data from the DataTraining.csv file,
+  Dtv - matrix of predictor variables correspond to the variable train data from the experimentData parameter,
+  tf - column vector of the known (train) yield values from the DataTraining.csv file,
+  tv - column vector of the known (train) yield values from the experimentData parameter,
+  single quote - transpose operator.
+
+Each row of the matrices of the predictor variables correspond to one known yield value in experiments allowed for use in 
+queries by the Problem Statement (from 18 to 72 different varieties, from 4 to 20 different reps and so on). Train predictors 
+(Dtf,Dtv) were computed after extraction of this yield from the data (leave one out procedure). Dtf'*Dtf and Dtf'*tf terms were 
+precomputed offline and hardcoded in the solution (~800k rows of predictors). Dtv'*Dtv and Dtv'*tv terms were computed online 
+partially (~70k rows from ~300k rows).
+
+Each row of the predictors contains 379 values:
+
+1. Sum of row and column means of the double centered experiment yields arranged in a matrix with rows correspond to the 
+varieties and columns correpond to the reps (called below Experiment Matrix).
+2. Sum of row and column means of the double centered Experiment Matrix with clipped outliers. Outliers was detected as values 
+with distance more than 3 standart deviation from the values predicted by the predictor 1 above.
+3. Imputed value by Bayesian inference based Principal Component Analysis algorithm.
+4. Imputed value by Bayesian inference based Principal Component Analysis algorithm with clipped outliers (see value 2 above) 
+in source data.
+5. Imputed value by Bayesian inference based Principal Component Analysis algorithm with Experiment Matrix with columns (reps) 
+weighted by similarity to the column with predicted value.
+6. Location zone value.
+7. Location subzone value.
+8. Location band value.
+9. Variety mean yield value over all known experiments.
+10. Variety standart deviation of yield value over all known experiments.
+11. Reciprocal of the value 9 above.
+12. Reciprocal of the value 10 above.
+13. Mean difference of variety yield value and mean yield of all varieties in a location zone over all known experiments.
+14. Standart deviation of value 13 above.
+15. Reciprocal of the value 13 above.
+16. Reciprocal of the value 14 above.
+17. Variety mean maturity value over all known experiments.
+18. Variety standart deviation of maturity value over all known experiments.
+19. Reciprocal of the value 17 above.
+20. Reciprocal of the value 18 above.
+21. Mean difference of variety maturity value and mean maturity of all varieties in a location zone over all known experiments.
+22. Standart deviation of value 21 above.
+23. Reciprocal of the value 21 above.
+24. Reciprocal of the value 22 above.
+25. Normalized amount of known reps with given variety over all known experiments.
+26. Reciprocal of the value 25 above.
+27. Square root of the value 25 above.
+28-378. Linear interaction terms between predictors 1..27 (products of their values)
+379. Intercept term (constant value equal to 1.0).

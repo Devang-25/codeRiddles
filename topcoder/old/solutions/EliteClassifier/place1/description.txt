@@ -1,0 +1,93 @@
+Hello,
+
+This file contains the description of my solution, to make your reading convenient, I will firstly explain the code to generate statistics for training dataset, and then explain my solution.
+
+1. Generate statistics
+My code to generate statistics can be found in my final submission, you can add the LOCAL macro and simply call analyze(filename); to generate the statistics for the training dataset, where filename is the exact file you provided, method analyze will read in the data from the file, construct the data structures and further call real_analyze method to calculate the statistics(the statistics will be saved into a file), so if you'd like to check the actual calculation of statistics, you can just check the code of real_analyze method.
+
+Basically, I just calculate the total count, elite count(and elite ratio) when some property has some certain value. In details, the following contents are generated:
+
+(1) Experiment count and the distribution for each year.
+(2) Total varieties count and total elite count
+(3) The elite and total count for each type. where type is "RR1", "RR2Y" and "conv".
+(4) The elite and total count for each year.
+(5) The elite and total count for each (year, type) pair.
+(6) The elite and total count for each trial count in a single experiment, that's, for the experiments with X trials totally, how many varieties are there and how many are elite.
+(7) The elite and total count for each location count in a single experiment, that's, for the experiments with X locations(used for trials) totally, how many varieties are there and how many are elite.
+(8) A single MN is equal to how many yield on average. To calculate this one, for each two varieties pair with yield and MN given in a single trial, I calculate (yield1-yield2)/(mn1-mn2), and finally calculate the average of these numbers
+(9) For elite varieties, how many times the yield is more than a check in the same trial(tie is counted as 0.5), and how many times the yield is more than a non-check variety in the same trial. Also count how many such comparisons are done totally, and then calculate the ratio. For the non-elite varieties, do the similar thing.
+(10) The elite count and ratio when varieties count used in the experiment is 36 and 40, respectively.(I made for each number but finally find only these two numbers are there)
+(11) The elite count and ratio for each (varieties count used in the experiment, check count) pair, check count means how many varieties used in the experiment are checks
+(12) How many experiments have X elite for each X.
+(13) The elite count and ratio for each 0.5 average RM segment, where average RM is calculated as the average RM for varieties whose RMs are available in a single experiment.
+
+Please note most of the statistics above are not directly used in the final solution and used as a guide to realize what factor may be important, and the final solution usually use the important observation from the statistics but some of the parameters are tuned by hand, the following explanation will show this. What I also want to say is I don't find the information in Locations.csv you provided quite useful, I try to use them in my solution but finally no obvious improvement can be made on training set and I don't generate their statistics, either.
+
+2. The solution
+The solution is not very complex, basically, for each variety an overall evaluation(a score, higher better) is calculated, and the varieties are sorted based on their evaluations and returned.
+
+To calculate the estimate, a variety is compared with all varieties in the same trial respectively by yield considering MN¡¯s affection, the logic is as follows:
+
+For each experiment
+	For each trial in that experiment
+		For each variety X in the trial
+			if the variety X is check, continue(we don¡¯t need to calculate anything for checks, they are not elite for sure)
+			if yield for the variety X is NULL, continue
+			s1=0
+			s2=0
+			for each other variety Y in the same trial
+				if yield for the variety Y is NULL, continue
+				eva1=X¡¯s yield
+				eva2=Y¡¯s yield
+				if (neither of MN for X and Y are NULL)
+					eva1-=0.4*X¡¯s MN
+					eva2-=0.4*Y¡¯s MN
+				weights=Y is check?5:1
+				if (eva1>eva2)
+					s1+=weights
+				else if (eva1==eva2)
+					s1+=weights/3
+				s2+=weights
+			rwt=1.0/(15+reps# in the same <experiment, loccd> pair)
+			X¡¯s win_accumulation+=rwt*pow(s1,1.3)
+			X¡¯s tot_accumulation+=rwt*pow(s2,1.3)
+For each variety, it¡¯s win_accumulation/tot_accumulation will be used as a base evaluation, which will be adjusted considering many factors listed in the first part above.
+
+Explanation for the logic code above:
+(1) The yield is adjusted based on MN, each MN worth about 0.4 yield based on the statistics made in the first part(see item 8 in the first part)
+(2) The comparison with checks are more important than non-checks, since checks¡¯ performance are more stable and checks are less than non-checks.
+(3) If many reps are in the same loccd, the performance in a single comparison provides less value
+(4) When a variety is better than almost all the other ones in the same trials, extra bonus should be given.(expressed within pow 1.3)
+
+After this main procedure, the overall evaluation for a variety can be calculated, the base of it is win_accumulation/tot_accumulation, but it¡¯s adjusted for many factors, the concrete logic is coded in overall_estimate method and the explanation is as follows:
+
+(1) estimate=0
+(2) if the variety is check, estimate-=(1e+10)
+(3) if no comparison can be made for the variety at all, estimate-=(1e+9),return
+(4) estimate+=win_accumulation/tot_accumulation*(1e+7)
+(5) if type is RR2Y, estimate-=(1e+9)
+(6) Check each trials in the experiment for the variety, count in how many of the trials MNs are given for varieties
+	If less than 10% of the trials provide such info, estimate*=0.7
+	If more than 90% of the trials provide such info, estimate*=1.05
+(7) If type is conv
+	if year of the experiment<=2001 estimate-=(1e+9)
+	else if year of the experiment!=2005 estimate*=0.85
+(8) Count how many trials are in the experiment containing the variety
+	if less than 3, estimate*=0.7
+	if between 7 and 9, estimate*=1.03
+	estimate*=(1+trialcnt_ratio[trials#]), where trialcnt_ratio is gotten from item 6 mentioned in the first part.
+(9)
+If 40 varieties are in the experiment, estimate*=0.7
+If 36 varieties are in the experiment and 4 of them are checks, estimate*=1.1
+If 36 varieties are in the experiment and 5 of them are checks, estimate*=1.15
+If 36 varieties are in the experiment and between 6 and 11 of them are checks, estimate*=1.1
+(10) estimate*=(1+5*pow(year_ratio[year],0.3)), where year_ratio is gotten from item 4 mentioned in the first part.
+(11) if type is RR1, and year is 2002 or 2006, estimate*=1.05
+
+All the adjust made in the procedure above are based on the statistics in the first part, some parameters are used directly and some are not. For the parameters not directly from the statistics, it¡¯s tuned based on the performance in the training set, along with the stability on the different subset of the training set(I split training data set into several subsets, some changes are only allowed when performances get better in each set)
+
+Finally, all varieties are sorted based on the overall evaluation from the calculation in the procedure above.
+
+That¡¯s all the explanation of my solution, if you¡¯ve any question, feel free to ask me for any details.
+
+elder1g

@@ -1,0 +1,82 @@
+
+
+Basicaly, the programm compute a score for each variety, sort by score in decrease order and return the result.
+
+The principle is: get average yeild for each trial, compute relative yield of the variety to the average yield in the trial, do sum fix according to the features of the variety.
+
+The program give high score to a variety if:
+its yield is high
+if the number of trial of the experiment is large
+if the LOCCD is not found in the locations.csv
+if MN of the variety is small
+
+
+According to my experience, following factor is more import to get accurate classify:
+use relative yield to mean yield in each trial instead of just yield 
+use weighted_mean of the yield for each trial instead of just mean
+use year_scale, type_scale, band_scale
+use empty_loc_scale
+use trail number
+
+I don't know how to use mn efficently. It seams have little improvement for my approch.
+
+
+Details goes as follows.
+
+The score is compute in two step:
+	1. Get the raw score (getRawScore() function)
+	2. Fix the raw score to get final score(getPredAll(), getPred() function)
+
+
+raw_score = average_yield_score + trial_fix + MN_fix [line 295 - 370]
+
+average_yield_score = sum(yield_score_empty_loc_fix for each trial)/num_of_trail_of_experiment [line 353 - 355]
+
+yield_score_empty_loc_fix = yield_score * EMPTY_LOC_SCALE (if LOCCD is not in locations.csv) [line 314 - 315]
+                          = yield_score (otherwise)
+
+EMPTY_LOC_SCALE(var m_emptyLocScale in program) is tuned by manual
+
+yeild_score = yield_mn_fixed / weighted_mean_yield_of_the_trial * 100 [function normScore() line 179 - 218. 100 is just a scale, so other parameter are not too small, like 0.0xx ]
+
+yield_mn_fixed = yield + mn_fixed [line 330 - 338]
+
+mn_fixed = (AVERAGE_MN - mn_of_the_variety) * YIELD_PER_MN
+
+mn_of_the_variety = mn (if mn is not NULL)      [line 335 - 337]
+                  = average_mn_of_the_variety (if mn is NULL in this trial) [line 331 - 333]
+
+AVERAGE_MN(var m_mnAve in program) and YIELD_PER_MN (var m_yieldPerMN in program) is tuned by manual
+
+weighted_mean_yield_of_the_trial = sum(yield * weight_of_variety) / sum(weight_of_variety) [function normScore() in line 179]
+
+weight_of_variety = powf(yeild / mean_yield_of_the_trial, 6.0) [function getVar2Weight() in line 372]
+This formula give high weight to high yield, it may means high yield is more importent when compare yield between different trial.
+6.0 is tuned by manual.
+
+trial_fix = sqrt(num_of_trial_of_experiment) * TRIAL_SCALE [line 362]
+TRIAL_SCALE(m_trialScale in program) is tuned by manual
+
+MN_fix = sqrt(num_of_trial_with_valid_mn) * 1.5 [line 364]
+1.5 is tuned by manual
+
+
+Now we have raw score for each variety, than we shall get final score.
+
+final_score = raw_score * YEAR_SCALE * TYPE_SCALE * BAND_SCALE + mn_ahead_fix [function getPred() in line 498]
+
+YEAR_SCALE have different value for each year, from 2000 to 2008
+TYPE_SCALE have different value for each type, conv, RR1, RR2Y)
+BAND_SCALE have different value for each band, from 0 to 9. According to ppt in knowledge base, the first digit of LOCCD is band.
+
+These three scale is trained by program(function train1() in line 852). It is trained 5 times, and each time has 10 iterator. For each time(round), the three scales is random init(line 892), and in each iterator, the scales is increased or decreased by a small value to get a higher score of classify. The scales is dumpped at the end of each round(line 916), and those values is inserted into the code(function setParas() in line 132).
+
+During local test, I leave 700 experiment for test and others for training. When submit, I use all data for training to get the 5 group of scales parameters.
+
+I use 5 group of scale parameters to get more stable result. The 5 result is sumed in function getPredAll() (line 525). It compute orders of variety by each group of scales, and average the order to get the final order.
+
+mn_ahead_fix = num_of_days_mn_ahead_of_check_variety * 0.3 [line 511]
+0.3 is tuned by manual
+
+num_of_days_mn_ahead_of_check_variety = sum(mn_of_variety - average_mn_of_check) / num_of_trial_with_valid_mn [function getVarID2MNWeight() in line 439]
+

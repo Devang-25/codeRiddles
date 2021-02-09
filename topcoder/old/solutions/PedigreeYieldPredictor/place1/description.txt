@@ -1,0 +1,18 @@
+My solution for this competition uses similar approach with a9108tc's solution for soybean MM 2, i.e. the matrix factorization, and the basic implementation framework is from his code in that competition, please read that description first before reading the following explanation.
+
+The non-missing values in the matrix represent the material's yield minus the average yields in the same rep(<expid,loccd,repno>), the users(rows) represent materials whose features include the pedigree, herb and rm information, the items(columns) represent environments whose features include information of plant year and location. In details, the following kinds of biases and factors are defined:
+1. Global bias: A single global bias representing the base value for all values in the matrix.
+2. users(rows) features:
+  2.1.Pedigree's identifier: This uses the pedigree's whole text without parsing it, different texts map to different ids.
+  2.2.Herb's distribution. The herbs distribution, this count all materials with the same pedigree text, then count how many percent of each kings of herbs(RR1, RR2Y, conv and NULL), the weight of each feature is equal to the percentage of that herb.
+  2.3.RM's info. This is calculated by using the average of RMs of all materials with the same pedigree text(ignoring null values). Then, the average rm is converted to index(each index has length 0.2).
+  2.4.Pedigree's composition. Basically, the top most composition(materials) of the pedigree takes weight 0.5, the ones in second top level has 0.25, and so on. For example, if the pedigree is "1/2//3", then id 3 takes weight 0.5, id 1 and 2 both take weight 0.25. The parsing of the pedigree is done in a recursive way.(check analyze_pedi function for the implementation).
+3. items(columns) features:
+  3.1.(location,year) identifier: This uses pair (loccd, plant year) as the identifier, different pairs map to different ids.
+  3.2.location identifier: This only uses loccd as the identifier.
+  3.3.year identifier: This only uses year as the identifier.
+
+With the following features defined, we can predict the non-given values of the matrix, and remember that the predicted values means the difference between the material's yield in the rep and the average yield of that rep, so we can generate the final result by simply sorting the values in the same rep.
+Same as a9108tc's code in the soybean mm2, loss function to minimize is sigma((Yij-PredYij)^2)+lambda(sigma(|pi|)+sigma(|qj|)), the SVD's implementation is basically the same with that program.
+
+The parameters in SVD's implementations are still K,lambda,lambda_bias and gamma with the same meaning as before. The model is trained using stochastic gradient descent approach with adaptive gamma, i.e. gamma is adjusted in the dynamic process, that is also the same approach as before. Parameters tuning is done with local cross validation.

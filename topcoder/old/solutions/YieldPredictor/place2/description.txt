@@ -1,0 +1,25 @@
+I used matrix factorization to solve this prediction problem (It is a commonly used algorithm in recommend system, see attached paper).
+
+The matrix I construct is: Yij=yield of planting soybean seed with id i into the environment id j. Here soybean seed id is a identical number for the pair <MaterialID,HERB> and the environment id is an identical number for the pair <LOCCD, PlantDate(YEAR)>.
+So the goal is to predict the non-given values of the matrix and that is what matrix factorization can do.
+
+The final model in my submitted code is:
+PredYij=b+bi+bj+dot(pi,qj)
+Where b is a global bias, bi bj are bias for soybean seed and environment, pi,qj are vectors representing the latent factors for soybean seed and environment. dot represent the dot pruduct of two vector.
+The loss function to minimize is:
+loss function=sigma((Yij-PredYij)^2)+lambda(sigma(|pi|)+sigma(|qj|))
+
+For the implementation,  I wrote an independent class for matrix factorization by referring the structure of the svdFeature toolkit (see attached paper).
+
+Parameters
+
+The parameters are manually set according to local experiment. local experiments are carried out by splitting the training data into two part for testing (with 70% for training and 30% for evaluating).
+
+Meaning of parameters:
+K in svdFeature: the dimension of the latent factor
+lambda in svdFeature: the regularization term, prevent the over fitting.
+gamma in svdFeature: the speed of learning, the larger the fast, but large gamma result in less accuracy or even NaN
+
+Links:
+http://www2.research.att.com/~volinsky/papers/ieeecomputer.pdf
+http://68.180.206.247/inner_peace_kddcup-camera_ready.pdf

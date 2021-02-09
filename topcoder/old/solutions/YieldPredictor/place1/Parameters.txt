@@ -1,0 +1,29 @@
+
+
+Validation and parameter tuning :
+
+We validate using K-fold mathod : we divide the training data into 5, learn on 4 folds and estimate the error on fifth fold. We run the 5 possible K-fold and make the mean of error.
+Two bash scripts for helping doing this : validate.bash and analyse.bash. Use both with an aribtrary test id. [example : ./validate.bash 01]
+
+
+Choosing parameters :
+
+* Choice of the candidates basic predictor : Just add all possible varaible that we have and add all possible combination that could be interresting. Add a lot of random pairs, to capture unintuitive behaviour that we don't want to analyse. The number of candidates is a tradeoff with trainting time which is proportionnal to the number of candidates. (We had 3000 -- 4000 candidates but we could have more).
+
+* List of basic predictor : Just a greedy approach the add iteratively the the best predictor that allox to reduce the training error (error on the training set).
+
+* Size of Buckets : Manually chosen around 5000. No clear reason of this choise it seems to be the one that perform better on the dataset. Too few buckets ==> too general predictor. Too many bucket ==> overfitted predictor. We randomly chosen number of bucket between 5000 and 6000 to avoid that the collision when using modulo are always on the same cases.
+
+* When making Pairs of variables, the new var is A1*(v1/d1) + A2*(v2/d2). Only A1 and d2 where used. d2 was choosen in order to limit the number of modality of the variable d2 (for example do not overfiit on cases where the temperature was exactly 22.33). A1 was choosen in order to reduce the number of collision and use as much buckets as possible on the 5000 buckets (avoid to have all variables fall in 0-100 buckets for example). We Added some random to reduce the risk of having always the same bad collision on buckets.
+
+* multiplication factor alpha applied to the basic predictor : The first predictor which just give the global mean of yield has alpha = 1 to start with a global mean error = 0. Initially, all the other predictor had the same aplha factor which is a tradeoff between computation time and avoiding overfitting. The more alpha is, the more we overfit and the less alpha is, the better optimal error is. But this optimal error is found after more iteration. 
+Developpemnt where made with alpha = 0.5 to have quick results, but final computation has been made with alpha = 0.05. 
+After this computation taht took mre than 1 day, we found that giving different alpha at each step can improve a little (while using the same list of basic predictor). greater alpha at the beginning (where ther still are large errors to correct) and smaller alpha at the end (where the error is more difficult to correct) gave better results. Not enougth time to test this approach when finding the basic predictor ==> this may improve the result.
+
+* Number of basic predictor to keep : Once a list of basic predictor is found, we chose how many of them we keep. We keep the first one such as we get the minimal mean error on 5 K-fold. If we put more predictor we will overfit the training set.
+
+* Avoid to use learn on cases with big error after 100 step : choice of 100 step and choice of abs(error) > 30 made manualy by testing results. The idea is that a the beginning it is still important to keep all tarining data because we still have a chance to make them have an error less than 25. If there wasn't the cut on 25 on the score MSE, this optimization wouldn't have been valid.
+ 
+* Only train on varieties that are used on validation afeter 100 steps. The idea is that at the beginning its is usefull to keep all training data (to learn on other varaibles than material_id) then at the end we can focus on making stecific optimisation on material_id that will be used for validation. 100 was manually chosen by testing different values.
+
+

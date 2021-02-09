@@ -1,0 +1,35 @@
+Consider that new added feature such as colour contain large percentage of NULL value, I didn't choose to use these features.
+
+I found that combine all the previous classifier can lead to higher Average Precision. So the main idea of my solution is combine the previous solutions and give them different weight according to training data.
+
+
+<res1, res2, res4> are the result return from previous top 1,2,4 submissions separately.
+
+The main code is as follows:
+
+for(int i=0; i<n; i++){
+	score[res1[i]]+=5*pow(i, 0.001);
+	score[res2[i]]+=6*pow(i, 0.001);
+	score[res4[i]]+=2*pow(i, 0.001);
+}
+
+Then we sort the score, and return a list as final result (item with lower score is better)
+5,6,2 are parameter chosen under training data. 
+
+
+
+Further, I change a little about the code in 2-submission code as follows, while keep the 1,4-submissions same exactly the same as it was.
+
+
+First, consider that rm is more reliable, I replace yield with yield-=0.6*rm,
+0.6 comes from slides provide in knowledge base.
+
+Second I add score considering year_ratio(which is adpot from 1-submission) and multiply score with
+	score *=(1+11*pow(year_ratioo[vid.year], 0.8 ));
+
+Furthermore some parameter is slightly changed
+kYLSmooth from 50->90;
+(vid.count > 15 ? 15 : vid.count) -> pow((vid.count > 15 ? 15 : vid.count), 0.8);
+
+
+

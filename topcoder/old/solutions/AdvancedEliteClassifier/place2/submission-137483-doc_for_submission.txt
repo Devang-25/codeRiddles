@@ -1,0 +1,33 @@
+For this competition I reuse my code in soybean MM 1, but the prediction approach is changed from that competition.
+
+Part(1) - Generate traits.
+The first step of my submission is aggregate or calculate traits(or called properties) for each (actually non-check, since for checks they are put at the back of the return list) variety, that includes the following things:
+1.RM.
+2.Total comparison made count with other varieties.
+3.A double representing the overall comparison result with other varieties.
+Note, for 2 and 3 how to calculate them are described in my doc for soybean MM1, check that doc for details.(tot_accumulation and win_accumulation/tot_accumulation in that doc)
+4.Most frequent pod Color.
+5.Most frequent Pubescence Color.
+6.Most frequent Flower Color.
+7.Most frequent Emergence.
+8.Most frequent Harvest Lodging.
+9.How many percent of trials of this variety have non-null Plant height.
+10.The average of non-null Plant height for this variety(in all trials)
+11.How many trials contained in the experiment containing this variety.
+12.The variety type(converted to an int ID)
+13.How many percent of trials of this variety have MN info available.
+14.Whether the experiment year<=2001.
+15.Whether the experiment year is 2004 or 2005.
+16.The experiment year.
+Note, why we have "redundant" item 14 and 15 will be explained in the second part of this doc, i.e. how to use these traits.
+17.For experiments of trials# equal to this experiment, how many percent of the varieties contained are elite(in training set).
+18.For experiments of year equal to this experiment, how many percent of the varieties contained are elite(in training set).
+
+Part(2) - How to utilize traits.
+In soybean MM 1 I hard code the logic to utilize traits, in this competition, instead, I use random forest approach(if you don't know it, check the wikipedia page) to make the prediction. I construct 100 decision trees, each with maximum level 15, for each node 4 traits are chosen randomly and the best is used to split the data. In leaf node the evaluation is calculated as the percentage of elite varieties held in that node. The overall evaluation of a non-check variety is simply the average of these 100 numbers, higher better. They are put into a sorted list and all the checks are put at the end of this list.
+For this approach the experiment year itself may means little thing but via observation whether the experiment year <= 2001 or whether the experiment year is 2004 or 2005 does make sense based on local testing, that's why they are also added into the traits set in part(1).
+
+It's a pity that this solution seems still beaten by a hard coded logic submission in the end, so maybe this approach is not good for this data set.
+
+
+

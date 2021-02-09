@@ -1,0 +1,30 @@
+Soybean MM 3 - Mloody2000
+
+My solution calculates two estimations and takes the average of them. In the explanation, the 'configuration' stands for (Locid/Repno couple) and 'target' for the one we're searching an estimation for. The two estimations are:
+
+1/ Relative Performance :
+	- get average performance for each configuration (ie -> LocId / Repno) in given experiment
+	- get the average relative performance for all configurations = Yield(targetVariety) / average Yield(allVarieties) = l_dRelativePerf 
+	- an overweight factor (nbR) is applied if the configuration has the same Locid as the target one (paremeter is empirical - I tried several possibilities in [0,15])
+	- get the average performance for the target configuration = l_dAvPerf
+	- the estimate = l_dRelativePerf * l_dAvPerf
+
+The idea is simply that in the target configuration the variety should perform similary relative to the average as in other configuration of the experiment. A better weighting could be applied - I tried different approaches (explained later for kNN estimator) but didn't worked - my local tester wasn't flexible enough to statistically test it in a reliable way.
+
+2/ kNN based approach :
+	- It's a weighted vote of all varieties in a given experiment with some tweaks:
+
+	For each variety in experiment (filter on varieties that are available in target configuration)
+		Calculate 2 Parameters:
+		- the average difference between the variety and the target one
+		- the sum of absolute differences between the variety and the target one
+		Add the estimation to the overall vote, where:
+		- estimation = yield(currentVariety) on target Configuration - average difference between current and target variety
+		- the weighting factor is the squared sum of absolute differences (l_dSum)
+
+	- An overweight factor is applied for all configuration with the same Locid as the target one (as previously, it's empirical - I tested in [0,15])
+	- An additionnal weighting by a square root of average absolute difference between each configuration and the target one
+
+I think both can be improved by playing with the weighting factors (ie - don't take absolute differences between configurations / varieties to decide the 'quality' of an estimation, but rather the standard deviation around the average difference).
+
+Please contact me if you have any doubts - the code isn't very clean as I tried different estimators.

@@ -1,0 +1,74 @@
+My solution based on SVD like factorization of the known (train) yield values
+arranged in a sparse matrix. Each row of the matrix corresponds to one unique
+environment state of the experiments (~1.5k unique values of sets of the
+LOCCD,Rep,Year,Month,Day) and each column corresponds to one variety
+(~45k unique values of the VarietyID).
+
+I estimated parameters of the following model:
+
+ Y = m + Me*Iv' + Ie*Mv' + E*V'
+
+where
+ Y - the matrix of the yield values,
+ m - scalar mean of the all known yield values,
+ Me - column vector of mean values of rows with size equal to amount
+of rows of Y,
+ Iv - column vector with all entries equal to 1 and size equal to amount
+of columns of Y,
+ Ie - column vector with all entries equal to 1 and size equal to amount
+of rows of Y,
+ Mv - column vector of mean values of columns with size equal to amount
+of columns of Y,
+ E - matrix of environment features (matrix with 512 columns was used),
+ V - matrix of varieties features (512 columns),
+ single quote - transpose operator.
+
+Mean of the all known yield values (m) was computed directly and constant.
+Other parameters of the model (Me,Mv,E,V) are estimated by gradient
+descend on squared errors between known values of elements of Y and
+estimated values. E and V were regularized by penalizing squared values
+of their elements. On each step one update of the related parameters was
+done for each yield value. Model were trained by 200 iterations over all
+known values of Y during runtime of the submission (online) in accordance
+with the next procedure (gradient descend update):
+
+ d = t - r0 - c0 - e0*v0';
+
+ e1 = e0 + lf*(d*v0 - lr*e0);
+ v1 = v0 + lf*(d*e0 - lr*v0);
+
+ r1 = r0 + lm*d;
+ c1 = c0 + lm*d;
+
+where
+ d - scalar, estimation error;
+ t - scalar, centered by global mean (m) known yield value;
+ r0,r1 - scalars, element of the row means vector Me for corresponding
+to t row, before and after update correspondingly;
+ c0,c1 - scalars, element of the column means vector Mv for corresponding
+to t column, before and after update correspondingly;
+ e0,e1 - row vector, row of matrix of environment point features (E)
+corresponding to t, before and after update correspondingly;
+ v0,v1 - row vector, row of matrix of variety features (V) corresponding to t,
+before and after update correspondingly;
+ lf - scalar, features learn rate, value 0.2/512 was used;
+ lr - scalar, regularization learn ratio, value 0.45 was used;
+ lm - scalar, means learn rate, value 0.3/512 was used;
+ single quote - transpose operator.
+
+Before beginning each group of train rows with duplicate sets of values
+ofExperimentID,LOCCD,Rep,VarietyID,Year,Month,Day was replaced by
+one row with Yield value replaced by mean value of Yield's of the
+corresponding group.
+
+Mean of the all known yield values (m) was computed before training and
+subtracted from the known yield values (centering by global mean). Mean values
+of columns (Mv) were initilized by zero values. Mean values of rows (Me) were
+initialized by the corresponding means of known values of Y after the centering by
+global mean (m). E and V matrices were initialized by random values sampled
+from the Gaussion distribution with standard deviation equal to 0.1.
+
+After training model was used for computing predictions (directly by the formulae
+for Y). Out of sample of environment points values (values without corresponding
+rows of Y) were predicted as constants equal to mean of the all known yield
+values (m).

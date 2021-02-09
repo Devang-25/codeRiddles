@@ -1,0 +1,12 @@
+The solution is pretty the same than for Soybean MM 2 :
+
+* Add of new raw variables (Experiement ID, REPNO)
+* Add experimentData to trainingData (they are treated the same way)
+* at each step choose the best basic predictor chosen agon many random
+predictor that use random linear cobination of 2 row variables.
+* Choose increasing size bucket in the sequence of predictor.
+* Some technical changes in the way of serializing the predictor list
+because compile time was > 30s with the previous method.
+* Tune all the previous parameters (number of predictor, size of
+buckets, learning rate, etc...) in order to maximize local k-fold
+scores.

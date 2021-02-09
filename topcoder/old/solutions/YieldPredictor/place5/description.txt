@@ -1,0 +1,10 @@
+I models this problem as a recommendation system. And I try to solve this problem by using Matrix Factorizing and  SVD++ Feature.
+The basic idea is considering the MaterialID as the user and the LOCCD*year as the item. Let the yields be the rating that the user rated for the item.
+So we have a training set and the goal is to predict the ratings in the test set.
+In my final approach, the training phase has two parts.
+
+ 1.  The first is to calculate the best training round. I split the origin train set into two sets such that the bigger one for pre-train and the smaller one for cross validation.
+ 2.  And then, put the two parts together, training them by SVD++ Feature Model.
+
+That's how my solution works.
+And  all the parameters in my program are set by myself adjusting by the submission returns and the experience I have got before.
